@@ -1,6 +1,11 @@
-import { example } from './data.js';
-// import data from './data/lol/lol.js';
-import data from './data/pokemon/pokemon.js';
-// import data from './data/rickandmorty/rickandmorty.js';
+// import data from './data/gibli/ghibli.js';
 
-console.log(example, data);
+import studio from './data/ghibli/ghibli.js';
+
+const studioArray = studio;
+let filmsArray = studioArray.films;
+
+for (const films of filmsArray){
+    console.log(films["title"])
+    console.log(films["description"]);
+}
