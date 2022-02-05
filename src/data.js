@@ -1,13 +1,34 @@
 // importar desde ghibli json
 // import jsonFilms from './data/ghibli/ghibli.json' assert { type: 'json' };
 
+export default class Films {
+  constructor(poster, title, description) {
+      this.poster = poster,
+      this.title = title,
+      this.description = description
+  }
 
-// estas funciones son de ejemplo
+  getPoster() {
+      return this.poster
+  }
 
-export const films = () => {
-  return 'example';
-}; 
+  getTitle() {
+      return this.title
+  }
 
-export const anotherExample = () => {
-  return 'OMG';
-};
+  getDescription() {
+      return this.description
+  }
+
+  setPoster(newPoster) {
+      this.poster = newPoster
+  }
+
+  setTitle (newTitle) {
+      this.title = newTitle
+  }
+
+  setDescription(newDescription) {
+      this.descripton = newDescription
+  }
+}

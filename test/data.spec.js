@@ -1,23 +1,27 @@
-import { example, anotherExample } from '../src/data.js';
+//import { example } from '../src/data.js';
+
+import Films from '../src/data.js';
 
 
-describe('example', () => {
+describe('data', () => {
+  it('should be a function', () => {
+    expect(typeof Films).toBe('function');
+  });
+
+  it('sets the title', () => {
+    const film = new Films('a', 'b', 'c')
+    film.setTitle('other')
+    expect(film.getTitle()).toEqual('other');
+  })
+})
+
+/* expect(new Films()).toBeInstanceOf(Films);
+expect(() => {}).toBeInstanceOf(Function);
+expect(new Films()).toBeInstanceOf(Function); */
+
+/* describe('Films', () => {
+  const films = new Films()
   it('is a function', () => {
-    expect(typeof example).toBe('function');
+    expect(films instanceof Films).toBe('true');
   });
-
-  it('returns `example`', () => {
-    expect(example()).toBe('example');
-  });
-});
-
-
-describe('anotherExample', () => {
-  it('is a function', () => {
-    expect(typeof anotherExample).toBe('function');
-  });
-
-  it('returns `anotherExample`', () => {
-    expect(anotherExample()).toBe('OMG');
-  });
-});
+}); */
