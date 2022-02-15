@@ -63,6 +63,10 @@ nav ul {
     padding: .5em;
 }
 
+.filter {
+    display: none;
+}
+
 .select_sort {
     display: none;
     position: absolute;
@@ -75,6 +79,22 @@ nav ul {
     color: #60a0d1;
     font-weight: 500;
 }
+
+.filter_section {
+    margin-right: 2em;
+}
+
+.filter_section a {
+    text-decoration: none;
+    color: #60a0d1;
+    font-weight: 500;
+}
+
+.filter {
+    display: none;
+}
+
+
 
 .select_sort ul li {
     list-style: none;

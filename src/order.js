@@ -24,7 +24,7 @@ function showYearN(idElement){
             return -1
         }
     })
-    
+
     if (idElement === 'news'){
         for (const filmSY of sortYear){
             const newsortYear = new Films({id: filmSY.id, poster: filmSY.poster, title: filmSY.title, score: filmSY.rt_score})
@@ -62,6 +62,7 @@ function showSortAZ(idElement){
         } 
     }
 }
+
 
 
 export {showMorePopular, showYearN, showSortAZ}

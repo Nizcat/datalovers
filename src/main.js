@@ -119,6 +119,13 @@ buttonSort.addEventListener('click', function(){
 })
 
 
+const buttonFilter = document.getElementById('button_filter')
+const selectFilter = document.querySelector('.filter')
+buttonFilter.addEventListener('click', function(){
+    selectFilter.style.display = 'block'
+})
+
+
 // ---------  Seccion de ordenamiento  -----------
 // ordenar por popularidad
 document.getElementById('more_popular').addEventListener('click', function(){
@@ -147,6 +154,87 @@ document.getElementById('sortza').addEventListener('click', function(){
     document.getElementById("container_cards").innerHTML = ""
     showSortAZ('sortza')
 })
+
+
+
+
+
+
+function filter() {
+    let producers = filmsObj.map((filmsObj) => filmsObj.producer);
+    let producer_list = Object.values(producers).reduce((list, prod) => {
+        if (!list.includes(prod)) {
+        list.push(prod);
+      }
+      return list;
+    }, [])
+    let directors = filmsObj.map((filmsObj) => filmsObj.director);
+    let director_list = Object.values(directors).reduce((list, dir) => {
+      if (!list.includes(dir)) {
+        list.push(dir);
+      }
+      return list;
+    }, [])
+    let years = filmsObj.map((filmsObj) => filmsObj.release_date);
+    let year_list = Object.values(years).reduce((list, year) => {
+      if (!list.includes(year)) {
+        list.push(year);
+      }
+      return list;
+    }, [])
+    document.getElementById("filter").innerHTML = `
+      <form >
+      <label for="director" >Directores:
+    </label><input id ="director" list="directores">
+    <datalist id="directores">
+    <option value="${director_list[0]}">
+    <option value="${director_list[1]}">
+    <option value="${director_list[2]}">
+    <option value="${director_list[3]}">
+    <option value="${director_list[4]}">
+    <option value="${director_list[5]}">
+  </datalist>
+  <br>
+  <label for="producer" >Productores:
+  </label>
+  <input id = "producer" list="producers">
+  <datalist id="producers">
+    <option value="${producer_list[0]}">
+    <option value="${producer_list[1]}">
+    <option value="${producer_list[2]}">
+    <option value="${producer_list[3]}">
+    <option value="${producer_list[4]}">
+   </datalist>
+   <br>
+   <input type="submit" id="filtersubmit">
+  </form>
+  `
+    document.getElementById("filtersubmit").addEventListener("click", function show(e) {
+      e.preventDefault()
+      let dir_choice = document.getElementById("director").value;
+      let prod_choice = document.getElementById("producer").value;
+      let filter_list = [];
+      const keysFilms = Object.keys(filmsObj);
+      for (let i = 0; i < keysFilms.length; i++) {
+        let positionFilm = keysFilms[i];
+        let filmkey = filmsObj[positionFilm];
+        if ((dir_choice === filmkey.director && prod_choice === filmkey.producer && filter_list != filmkey.title) || (dir_choice === filmkey.director && filter_list != filmkey.title) || (prod_choice === filmkey.producer && filter_list != filmkey.title)) {
+          let filmClass =new Films({
+            id: filmkey.id,
+            poster: filmkey.poster,
+            title: filmkey.title,
+            description: filmkey.description,
+            director: filmkey.director,
+            producer: filmkey.producer,
+            release_date: filmkey.release_date,
+          })
+          filter_list.push(filmClass);
+        }
+      }
+      document.getElementById("container_cards").innerHTML=""
+      filter_list.map(showFilms)
+    });
+  } filter()
 
 
 export {showFilms}
