@@ -25,6 +25,7 @@
       </div>
       <ul>
         <li>Ghibli</li>
+        <li>Filmography</li>
         <li>Search</li>
       </ul>
     </nav>
@@ -34,12 +35,39 @@
   </header>
   <section></section>
   <main>
+    <section class="organize">
+      <div class="sort">
+        <a href="#" role="button" id="button_sort" title="Haz click aqui para ordenar las peliculas">
+          <span>Sort by</span>
+        </a>
+        <div class="select_sort">
+          <ul>
+            <li>
+              <label id="more_popular" title="Ordenar de los mas destacados a los menos">Popular</label>
+            </li>
+            <li>
+              <label id="news" title="Ordenar del más reciente al más antigüo">More News</label>
+            </li>
+            <li>
+              <label id="olds" title="Ordenar del más antigüo al más reciente">More Olds</label>
+            </li>
+            <li>
+              <label id="sortaz" title="Ordenar alfabeticamente de la A-Z">Alphabeth A-Z</label>
+            </li>
+            <li>
+              <label id="sortza" title="Ordenar alfabeticamente de la Z-A">Alphabeth Z-A</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
     <div class="container">
       <div class="container_cards" id="container_cards"></div>
     </div>
-    <div class="container_info" id="container_info">  
-      
-    </div>
+    <section>
+      <div class="container_info" id="container_info"></div>
+      <div class="container_people container_cards" id="container_people"></div>
+    </section>
   </main>
   <footer></footer>
   <div id="root"></div>
