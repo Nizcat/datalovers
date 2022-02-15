@@ -28,7 +28,7 @@ nav ul {
 }
 
 .menu-cel {
-    margin-left: .2em;
+    margin-left: .4em;
 }
 
 .menu-cel img {
@@ -41,7 +41,7 @@ nav ul {
 
 .buscador img {
     width: 29px;
-    margin: .5em;
+    margin-right: .4em;
 }
 
 .slide img {
@@ -50,6 +50,44 @@ nav ul {
 
 .main {
     width: 90%;
+}
+
+.organize {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.sort {
+    margin: 1em;
+    padding: .5em;
+}
+
+.select_sort {
+    display: none;
+    position: absolute;
+    border: 1px solid gray;
+    padding: .5em;
+}
+
+.sort a {
+    text-decoration: none;
+    color: #60a0d1;
+    font-weight: 500;
+}
+
+.select_sort ul li {
+    list-style: none;
+    padding: .2em;
+    border-bottom: 1px dotted gray;
+}
+
+.select_sort ul li:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+.select_sort ul li:last-child{
+    border-bottom: none;
 }
 
 .container {
@@ -94,6 +132,10 @@ nav ul {
     justify-content: center;
 }
 
+.info_card_img img {
+    border-radius: 2em;
+}
+
 .info_card__data {
     margin: auto;
     padding: 1em;
@@ -101,20 +143,20 @@ nav ul {
 }
 
 @media (min-width: 800px){
-.info_container{
-    margin: auto;
-    width: auto;
-    height: fit-content;
-}
+    .info_container{
+        margin: auto;
+        width: auto;
+        height: fit-content;
+    }
 
-.info_container_card {
-    width: auto;
-    display: flex;
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-   
-}
+    .info_container_card {
+        width: auto;
+        display: flex;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+    
+    }
 }
 .year {
     text-align: end;    
@@ -124,5 +166,17 @@ nav ul {
     justify-content:right;
     width:3em;
     height:3em;
+
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.people_img img {
+    border-radius: 30px;
 
 }

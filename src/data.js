@@ -9,10 +9,9 @@ export default class Films {
         this.director = film_data['director']
         this.producer = film_data['producer']
         this.poster = film_data['poster']
-        this.release_date = film_data['date']
-        this.rt_score = film_data['score']
+        this.release_date = film_data['release_date']
+        this.rt_score =  film_data['score']
     }
-
 
     getId() {
         return this.id
