@@ -10,6 +10,13 @@ const infoFilms = document.getElementById("container_info")
 const peopleFilms = document.getElementById("container_people")
 let filmsObj = studio.films;
 
+// logica que busca peliculas relacionadas con una palabra
+let word = document.getElementById("search").value
+document.getElementById("search").addEventListener('keypress', function(){
+    searchWord(word)
+})
+
+
 
 // Función que recibe una instancia de clase de las peliculas y las pinta
 function showFilms(film) {
@@ -71,6 +78,7 @@ function selectFilm(id) {
 // Función que recibe una instancia de clase de la información de las peliculas y la pinta.
 function showInfoFilm(filmInfo){
     document.getElementById("container_cards").innerHTML = ""
+    document.getElementById("organize").innerHTML = ""
     const hijo = document.createElement("div")
     hijo.classList.add("info-card")
     hijo.innerHTML = ` 
@@ -112,17 +120,21 @@ function showPeople(people) {
     peopleFilms.appendChild(hijo)
 }
 
+// escuchando el evento click en el boton para mostrar la seccion sort
 const buttonSort = document.getElementById('button_sort')
 const selectSort = document.querySelector('.select_sort')
 buttonSort.addEventListener('click', function(){
+    selectFilter.style.display = 'none'
     selectSort.style.display = 'block'
+
 })
 
-
+// escuchando el evento click en el boton para mostrar la seccion filter
 const buttonFilter = document.getElementById('button_filter')
 const selectFilter = document.querySelector('.filter')
 buttonFilter.addEventListener('click', function(){
-    selectFilter.style.display = 'block'
+    selectSort.style.display = 'none'
+    selectFilter.style.display = 'block' 
 })
 
 
@@ -156,10 +168,7 @@ document.getElementById('sortza').addEventListener('click', function(){
 })
 
 
-
-
-
-
+// funcion que filtra la data y devuelve la de interes
 function filter() {
     let producers = filmsObj.map((filmsObj) => filmsObj.producer);
     let producer_list = Object.values(producers).reduce((list, prod) => {
@@ -185,26 +194,26 @@ function filter() {
     document.getElementById("filter").innerHTML = `
       <form >
       <label for="director" >Directores:
-    </label><input id ="director" list="directores">
-    <datalist id="directores">
-    <option value="${director_list[0]}">
-    <option value="${director_list[1]}">
-    <option value="${director_list[2]}">
-    <option value="${director_list[3]}">
-    <option value="${director_list[4]}">
-    <option value="${director_list[5]}">
-  </datalist>
+    </label><select id ="director" list="directores">
+    <option value="">none</option>
+    <option value="${director_list[0]}">${director_list[0]}</option>
+    <option value="${director_list[1]}">${director_list[1]}</option>
+    <option value="${director_list[2]}">${director_list[2]}</option>
+    <option value="${director_list[3]}">${director_list[3]}</option>
+    <option value="${director_list[4]}">${director_list[4]}</option>
+    <option value="${director_list[5]}">${director_list[5]}</option>
+  </select>
   <br>
   <label for="producer" >Productores:
   </label>
-  <input id = "producer" list="producers">
-  <datalist id="producers">
-    <option value="${producer_list[0]}">
-    <option value="${producer_list[1]}">
-    <option value="${producer_list[2]}">
-    <option value="${producer_list[3]}">
-    <option value="${producer_list[4]}">
-   </datalist>
+  <select id = "producer" list="producers">
+    <option value="">none</option>
+    <option value="${producer_list[0]}">${producer_list[0]}</option>
+    <option value="${producer_list[1]}">${producer_list[1]}</option>
+    <option value="${producer_list[2]}">${producer_list[2]}</option>
+    <option value="${producer_list[3]}">${producer_list[3]}</option>
+    <option value="${producer_list[4]}">${producer_list[4]}</option>
+   </select>
    <br>
    <input type="submit" id="filtersubmit">
   </form>

@@ -3,6 +3,13 @@ import Films from './data.js'
 import { filmsObj } from './main.js'
 
 
+// función que busca en el objeto las peliculas que coincidan con el string dada por el usuario
+function searchWord(word){
+    const foundword = filmsObj.filter(function(word){
+        
+    })
+}
+
 // función que rrecorre un array con las peliculas ordenadas del más popular al menos. 
 function showMorePopular(){
     const sortPopular = filmsObj.sort(function(f1, f2){
