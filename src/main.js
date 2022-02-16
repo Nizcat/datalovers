@@ -2,7 +2,7 @@
 
 import studio from './data/ghibli/ghibli.js';
 import Films from './data.js';
-import { showMorePopular,  showYearN, showSortAZ } from './order.js';
+import { showMorePopular,  showYearN, showSortAZ, searchWord } from './order.js';
 import People from './people.js';
 
 const filmsDom = document.getElementById("container_cards")
@@ -11,11 +11,12 @@ const peopleFilms = document.getElementById("container_people")
 let filmsObj = studio.films;
 
 // logica que busca peliculas relacionadas con una palabra
-let word = document.getElementById("search").value
-document.getElementById("search").addEventListener('keypress', function(){
-    searchWord(word)
+document.getElementById("search").addEventListener('keypress', function(e){
+    if(e.key == 'Enter'){
+        const word = document.getElementById("search").value
+        searchWord(word)
+    }
 })
-
 
 
 // Función que recibe una instancia de clase de las peliculas y las pinta
@@ -119,23 +120,6 @@ function showPeople(people) {
     `
     peopleFilms.appendChild(hijo)
 }
-
-// escuchando el evento click en el boton para mostrar la seccion sort
-const buttonSort = document.getElementById('button_sort')
-const selectSort = document.querySelector('.select_sort')
-buttonSort.addEventListener('click', function(){
-    selectFilter.style.display = 'none'
-    selectSort.style.display = 'block'
-
-})
-
-// escuchando el evento click en el boton para mostrar la seccion filter
-const buttonFilter = document.getElementById('button_filter')
-const selectFilter = document.querySelector('.filter')
-buttonFilter.addEventListener('click', function(){
-    selectSort.style.display = 'none'
-    selectFilter.style.display = 'block' 
-})
 
 
 // ---------  Seccion de ordenamiento  -----------
