@@ -5,8 +5,9 @@
 }
 
 body {
+    font-family:'Hind Madurai', sans-serif;
     font-size: 16px;
-    width: 100vw;
+    width: 99vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -24,10 +25,30 @@ nav {
 }
 
 nav ul {
-    display: none;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
 }
 
-.menu-cel {
+nav ul li {
+    margin: .3em;
+}
+
+ul li img {
+    width: 40px;
+}
+
+ul li input {
+    width: 6em;
+    border-radius: .45em;
+    margin-right: .5em;
+}
+
+/* .menu-cel {
     margin-left: .4em;
 }
 
@@ -42,7 +63,7 @@ nav ul {
 .buscador img {
     width: 29px;
     margin-right: .4em;
-}
+} */
 
 .slide img {
     width: 200px;
@@ -52,19 +73,17 @@ nav ul {
     width: 90%;
 }
 
+/* --- Seccion de ordenamiento y filtrado --- */
 .organize {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
 }
 
+/* Seccion de ordenamiento*/
 .sort {
     margin: 1em;
     padding: .5em;
-}
-
-.filter {
-    display: none;
 }
 
 .select_sort {
@@ -80,22 +99,6 @@ nav ul {
     font-weight: 500;
 }
 
-.filter_section {
-    margin-right: 2em;
-}
-
-.filter_section a {
-    text-decoration: none;
-    color: #60a0d1;
-    font-weight: 500;
-}
-
-.filter {
-    display: none;
-}
-
-
-
 .select_sort ul li {
     list-style: none;
     padding: .2em;
@@ -110,6 +113,24 @@ nav ul {
     border-bottom: none;
 }
 
+
+/* Seccion de filtrado*/
+.filter_section {
+    margin-right: 2em;
+    display: block;
+}
+
+.filter_section a {
+    text-decoration: none;
+    color: #60a0d1;
+    font-weight: 500;
+}
+
+.filter {
+    display: none;
+}
+
+/* container*/
 .container {
     display: flex;
     justify-content: center;
