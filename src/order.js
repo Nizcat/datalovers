@@ -5,9 +5,20 @@ import { filmsObj } from './main.js'
 
 // función que busca en el objeto las peliculas que coincidan con el string dada por el usuario
 function searchWord(word){
-    const foundword = filmsObj.filter(function(word){
-        
+    const foundword = filmsObj.filter(function(film){
+        let myReg = new RegExp(word, "i")
+        if(film.title.match(myReg) != null){
+            return true
+        } else {
+            return false
+        }
     })
+    document.getElementById("container_cards").innerHTML = ""
+    document.getElementById("organize").innerHTML = ""
+    for (const filmfound of foundword){
+        const newfilmsFound = new Films({id: filmfound.id, poster: filmfound.poster, title: filmfound.title, score: filmfound.rt_score})
+        showFilms(newfilmsFound)
+    }
 }
 
 // función que rrecorre un array con las peliculas ordenadas del más popular al menos. 
@@ -72,4 +83,4 @@ function showSortAZ(idElement){
 
 
 
-export {showMorePopular, showYearN, showSortAZ}
+export {showMorePopular, showYearN, showSortAZ, searchWord}

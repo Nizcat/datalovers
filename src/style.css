@@ -93,6 +93,14 @@ ul li input {
     padding: .5em;
 }
 
+.sort:hover > .select_sort{
+    display: block;
+    position:relative;
+    border: 1px solid gray;
+    padding: .5em;
+    
+}
+
 .sort a {
     text-decoration: none;
     color: #60a0d1;
@@ -130,6 +138,11 @@ ul li input {
     display: none;
 }
 
+.filter_section:hover>.filter {
+    display: block;
+    width: 6em;
+    height: 10em;
+}
 /* container*/
 .container {
     display: flex;
@@ -150,7 +163,8 @@ ul li input {
 }
 
 .card {
-    padding: .01em;
+    border: 1px solid rgb(184, 184, 184);
+    padding: 2em;
     border-radius: 30px;
 }
 
@@ -198,6 +212,11 @@ ul li input {
         justify-content: center;
     
     }
+    .info_card__data {
+        width:50%;
+        margin: auto;
+        padding: 1em;
+        text-align: justify;
 }
 .year {
     text-align: end;    
