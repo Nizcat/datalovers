@@ -2,8 +2,9 @@
 
 import studio from './data/ghibli/ghibli.js';
 import Films from './data.js';
-import { showMorePopular,  showYearN, showSortAZ, searchWord } from './order.js';
+import { showMorePopular,  showYearN, showSortAZ, searchWord, loopShowFilms } from './order.js';
 import People from './people.js';
+
 
 const filmsDom = document.getElementById("container_cards")
 const infoFilms = document.getElementById("container_info")
@@ -36,7 +37,6 @@ function showFilms(film) {
     document.getElementById(id).addEventListener('click', function(){selectFilm(id)})
 }
 
-
 for (const films of filmsObj){
     const film = new Films({id: films.id, poster: films.poster, title: films.title, release_date: films.release_date, score: films.rt_score})
     showFilms(film)
@@ -56,17 +56,13 @@ function selectFilm(id) {
             peopleFilm = filmkey.people
         }
     }
-    const filmInfo = new Films(
-        {
-            id: filmselected.id, 
-            poster: filmselected.poster, 
-            title: filmselected.title,
-            description: filmselected.description,
-            director: filmselected.director,
-            producer: filmselected.producer,
+    const filmInfo = new Films({id: filmselected.id, poster: filmselected.poster, title: filmselected.title,
+            description: filmselected.description, director: filmselected.director,producer: filmselected.producer,
             release_date: filmselected.release_date,
         }
     )
+    /* let nuevo = loopShowFilms(keysFilms)
+    console.log(nuevo); */
     showInfoFilm(filmInfo)
 
     for (const personFilm of peopleFilm){
@@ -155,7 +151,8 @@ document.getElementById('sortza').addEventListener('click', function(){
 // funcion que filtra la data y devuelve la de interes
 function filter() {
     let producers = filmsObj.map((filmsObj) => filmsObj.producer);
-    let producer_list = Object.values(producers).reduce((list, prod) => {
+    let producer_list = Object.
+    values(producers).reduce((list, prod) => {
         if (!list.includes(prod)) {
         list.push(prod);
       }
@@ -208,6 +205,7 @@ function filter() {
       let prod_choice = document.getElementById("producer").value;
       let filter_list = [];
       const keysFilms = Object.keys(filmsObj);
+      console.log(keysFilms);
       for (let i = 0; i < keysFilms.length; i++) {
         let positionFilm = keysFilms[i];
         let filmkey = filmsObj[positionFilm];
@@ -229,6 +227,11 @@ function filter() {
     });
   } filter()
 
+
+/* for(const film of filmsObj){
+    let vehicles = film.vehicles
+    console.log(vehicles);
+} */
 
 export {showFilms}
 export { filmsObj }
