@@ -11,14 +11,41 @@ const infoFilms = document.getElementById("container_info")
 const peopleFilms = document.getElementById("container_people")
 let filmsObj = studio.films;
 
+// ----- Seccion del NAV -----
 // logica que busca peliculas relacionadas con una palabra
 document.getElementById("search").addEventListener('keypress', function(e){
     if(e.key == 'Enter'){
         const word = document.getElementById("search").value
+        document.getElementById("container_cards").innerHTML = ""
+        document.getElementById("organize").innerHTML = ""
+        document.getElementById("container_info").innerHTML = ""
+        document.getElementById("container_people").innerHTML = ""
+        sectionQuiz.style.display = 'none'
+        sectionGhibli.style.display = 'none'
         searchWord(word)
     }
 })
 
+// Logica que muestra la info Ghibli
+const sectionGhibli = document.querySelector(".ghibli_section")
+document.getElementById("ghibli").addEventListener('click', function(){
+    document.getElementById("container_cards").innerHTML = ""
+    document.getElementById("organize").innerHTML = ""
+    sectionGhibli.style.display = 'flex'
+    sectionQuiz.style.display = 'none'
+})
+
+// Logica que muestra el Quiz Ghibli
+const sectionQuiz = document.querySelector(".quiz_section")
+document.getElementById("quiz").addEventListener('click', function(){
+    document.getElementById("container_cards").innerHTML = ""
+    document.getElementById("organize").innerHTML = ""
+    sectionQuiz.style.display = 'flex'
+    sectionGhibli.style.display = 'none'
+})
+
+//Mostrando las peliculas en el Dom
+loopShowFilms(filmsObj)
 
 // Función que recibe una instancia de clase de las peliculas y las pinta
 function showFilms(film) {
@@ -36,12 +63,6 @@ function showFilms(film) {
     filmsDom.appendChild(hijo)
     document.getElementById(id).addEventListener('click', function(){selectFilm(id)})
 }
-
-for (const films of filmsObj){
-    const film = new Films({id: films.id, poster: films.poster, title: films.title, release_date: films.release_date, score: films.rt_score})
-    showFilms(film)
-}
-
 
 // Funcion que busca la pelicula selecionada
 function selectFilm(id) {
@@ -61,8 +82,6 @@ function selectFilm(id) {
             release_date: filmselected.release_date,
         }
     )
-    /* let nuevo = loopShowFilms(keysFilms)
-    console.log(nuevo); */
     showInfoFilm(filmInfo)
 
     for (const personFilm of peopleFilm){
@@ -74,6 +93,8 @@ function selectFilm(id) {
 
 // Función que recibe una instancia de clase de la información de las peliculas y la pinta.
 function showInfoFilm(filmInfo){
+    const titleMain = document.querySelector(".title_main")
+    titleMain.style.display = 'none'
     document.getElementById("container_cards").innerHTML = ""
     document.getElementById("organize").innerHTML = ""
     const hijo = document.createElement("div")

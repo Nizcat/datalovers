@@ -7,12 +7,15 @@
 body {
     font-family:'Hind Madurai', sans-serif;
     font-size: 16px;
+    /* background-color: #f1f1f1; */
+    background-color: #fff;
     width: 99vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+/* Section NAV */
 nav {
     background-color: #60a0d1;  
     display: flex;
@@ -48,22 +51,49 @@ ul li input {
     margin-right: .5em;
 }
 
-/* .menu-cel {
-    margin-left: .4em;
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
 }
 
-.menu-cel img {
-    width: 29px;
+/* Section Ghibli info */
+.ghibli_section{
+    display: none;
 }
 
-.logo img {
-    width: 50px;
+.ghibli_section h1 {
+    margin-top: 1.5em;
+    font-weight: bold;
 }
 
-.buscador img {
-    width: 29px;
-    margin-right: .4em;
-} */
+.ghibli_section img{
+    margin-top: 1.2em;
+    width: 15em;
+    border-radius: 1.5em;
+}
+
+.ghibli_section p {
+    margin: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Section Ghibli info */
+.quiz_section{
+    display: none;
+}
+
+.quiz_section h1 {
+    margin-top: 1.5em;
+    font-weight: bold;
+}
+
+.quiz_section img{
+    margin-top: 1.2em;
+    width: 15em;
+    border-radius: 1.5em;
+}
 
 .slide img {
     width: 200px;
@@ -71,6 +101,14 @@ ul li input {
 
 .main {
     width: 90%;
+}
+
+.title_main {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1.5em;
 }
 
 /* --- Seccion de ordenamiento y filtrado --- */
@@ -95,7 +133,7 @@ ul li input {
 
 .sort:hover > .select_sort{
     display: block;
-    position:relative;
+    position:absolute;
     border: 1px solid gray;
     padding: .5em;
     
@@ -140,9 +178,12 @@ ul li input {
 
 .filter_section:hover>.filter {
     display: block;
+    position: absolute;
     width: 6em;
     height: 10em;
 }
+
+
 /* container*/
 .container {
     display: flex;
@@ -163,7 +204,9 @@ ul li input {
 }
 
 .card {
-    border: 1px solid rgb(184, 184, 184);
+    border: .01em solid rgb(179, 179, 179);
+    background-color: #e4f3ff;
+    /* background-color: #fff; */
     padding: 2em;
     border-radius: 30px;
 }
@@ -217,7 +260,9 @@ ul li input {
         margin: auto;
         padding: 1em;
         text-align: justify;
+    }
 }
+
 .year {
     text-align: end;    
 }
