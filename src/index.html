@@ -16,8 +16,8 @@
     <nav>
       <ul>
         <li><img src="/img/41AX51uL0dL.svg" alt="logo"></li>
-        <li>Ghibli</li>
-        <li>Filmography</li>
+        <li><a id="ghibli" href="#">Ghibli</a></li>
+        <li><a id="quiz" href="#">Quiz</a></li>
         <li>
           <form action="">
             <input type="text" id="search" placeholder="search">
@@ -30,6 +30,27 @@
     </section>
   </header>
   <main>
+    <div class="title_main">
+      <h2>Films</h2>
+    </div>
+    <section class="ghibli_section">
+      <h1 class="titleGhibli">Ghibli Studio</h1>
+      <img src="/img/sjViJ5v.jpeg" alt="">
+      <p class="pGhibli">Studio Ghibli Inc. is a Japanese animation film studio headquartered in Koganei, Tokyo. It is best known for its animated feature films, <br> 
+        and has also produced several short subjects, television commercials, and one television film. Its mascot and most recognizable symbol is a character named Totoro, <br> 
+        a giant catlike spirit from the 1988 anime film My Neighbor Totoro. Among the studio's highest-grossing films are Spirited Away (2001), <br> 
+        Howl's Moving Castle (2004) and Ponyo (2008).[2] The studio was founded on June 15, 1985 by directors Hayao Miyazaki and Isao Takahata and producer Toshio Suzuki, <br> 
+        after the successful performance of Topcraft's Nausicaä of the Valley of the Wind (1984). It has also collaborated with video game studios <br> 
+        on the visual development of several games.
+        Five of the studio's films are among the ten highest-grossing anime feature films made in Japan. Spirited Away is second, <br> 
+        grossing 31.68 billion yen in Japan and over US$380 million worldwide; and Princess Mononoke is fourth, grossing 20.18 billion yen. <br> 
+        Many of their works have won the Animage Grand Prix award. Four have won the Japan Academy Prize for Animation of the Year. <br> 
+        Five of their films have received Academy Award nominations. Spirited Away won the 2002 Golden Bear and the 2003 Academy Award for Best Animated Feature.</p>
+    </section>
+    <section class="quiz_section">
+      <h1 class="titleQuiz">Quiz</h1>
+      <img src="/img/sjViJ5v.jpeg" alt="">
+    </section>
     <section class="organize" id="organize">
       <div class="sort">
         <a href="#" role="button" class="sort" id="button_sort" title="Haz click aqui para ordenar las peliculas">
@@ -60,7 +81,6 @@
           <span>Filter</span>
         </a>
         <div class="filter" id="filter">
-
         </div>
       </section>
     </section>
@@ -69,7 +89,12 @@
     </div>
     <section>
       <div class="container_info" id="container_info"></div>
-      <div class="container_people container_cards" id="container_people"></div>
+      <div class="container_people container_cards" id="container_people">
+      </div>
+      <div class="container_locations container_cards" id="container_people">
+      </div>
+      <div class="container_vehicles container_cards" id="container_people">
+      </div>
     </section>
   </main>
   <footer></footer>

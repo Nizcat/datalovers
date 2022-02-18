@@ -6,7 +6,7 @@ import { filmsObj } from './main.js'
 function loopShowFilms(objFilms){
     for (const film of objFilms){
         const filmValues = new Films({id: film.id, poster: film.poster, title: film.title, score: film.rt_score})
-        //showFilms(filmValues)
+        showFilms(filmValues)
     }
 }
 
@@ -16,7 +16,6 @@ function searchWord(word){
     const foundword = filmsObj.filter(function(film){
         let myReg = new RegExp(word, "i")
         let people_match = film.people.map(person => person.name.match(myReg) != null )
-        let location_match = film.locations.map(location => location.name.match(myReg) != null )
         if(film.title.match(myReg) != null || 
         film.description.match(myReg) != null || 
         film.director.match(myReg) != null ||
@@ -25,18 +24,10 @@ function searchWord(word){
             return true
         } else if (people_match.includes(true)){
             return true
-        } else if (location_match.includes(true)){
-            return true
         } else {
             return false
         }
     })
-    document.getElementById("container_cards").innerHTML = ""
-    document.getElementById("organize").innerHTML = ""
-    /* for (const filmfound of foundword){
-        const newfilmsFound = new Films({id: filmfound.id, poster: filmfound.poster, title: filmfound.title, score: filmfound.rt_score})
-        showFilms(newfilmsFound)
-    } */
     loopShowFilms(foundword)
 }
 
@@ -46,11 +37,7 @@ function showMorePopular(){
     const sortPopular = filmsObj.sort(function(f1, f2){
         return f1.rt_score - f2.rt_score
     })
-
-    for (const filmPop of sortPopular){
-        const newsortAZ = new Films({id: filmPop.id, poster: filmPop.poster, title: filmPop.title, score: filmPop.rt_score})
-        showFilms(newsortAZ)
-    }
+    loopShowFilms(sortPopular)
 }
 
 // función que rrecorre un array con las peliculas ordenadas del la pelicula más reciente o la menos.
@@ -64,16 +51,10 @@ function showYearN(idElement){
     })
 
     if (idElement === 'news'){
-        for (const filmSY of sortYear){
-            const newsortYear = new Films({id: filmSY.id, poster: filmSY.poster, title: filmSY.title, score: filmSY.rt_score})
-            showFilms(newsortYear)
-        }
+        loopShowFilms(sortYear)
     } else if (idElement === 'olds'){
         let sortYearO = sortYear.reverse()
-        for (const filmSYO of sortYearO){
-            const newsortYearO = new Films({id: filmSYO.id, poster: filmSYO.poster, title: filmSYO.title, score: filmSYO.rt_score})
-            showFilms(newsortYearO)
-        }
+        loopShowFilms(sortYearO)
     }
 }
 
@@ -88,19 +69,11 @@ function showSortAZ(idElement){
     })
 
     if (idElement === 'sortaz'){
-        for (const filmSAZ of sortAZ){
-            const newsortAZ = new Films({id: filmSAZ.id, poster: filmSAZ.poster, title: filmSAZ.title, score: filmSAZ.rt_score})
-            showFilms(newsortAZ)
-        }
+        loopShowFilms(sortAZ)
     } else if (idElement === 'sortza'){
         let sortAZReverse = sortAZ.reverse()
-        for (const filmSZA of sortAZReverse){
-            const newsortZA = new Films({id: filmSZA.id, poster: filmSZA.poster, title: filmSZA.title, score: filmSZA.rt_score})
-            showFilms(newsortZA)
-        } 
+        loopShowFilms(sortAZ)
     }
 }
-
-
 
 export {showMorePopular, showYearN, showSortAZ, searchWord, loopShowFilms}
