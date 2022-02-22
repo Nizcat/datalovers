@@ -48,7 +48,7 @@ ul li img {
 ul li input {
     width: 6em;
     border-radius: .45em;
-    margin-right: .5em;
+    margin-right: .2em;
 }
 
 nav a {
@@ -56,6 +56,52 @@ nav a {
     color: #fff;
     font-weight: bold;
 }
+
+/* Section Slide */
+.slide_section{
+    width: 100vw;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slide_section ul{
+    padding: 0;
+    display: flex;
+    width: 300%; 
+
+    animation: slider 20s infinite alternate;
+}
+
+@keyframes slider {
+    0% {margin-left: 0;}
+    30% {margin-left: 0;}
+
+    35% {margin-left: -100%;}
+    60% {margin-left: -100%;}
+
+    65% {margin-left: -200%;}
+    100% {margin-left: -200%;}
+} 
+
+
+
+
+.slide_section li{
+    width: 100%;
+    list-style: none;
+}
+
+.slide_section li img{
+    width: 100%;
+}
+
+
+.logo img {
+    margin-left: 2em;
+    width: 150px;
+    position: absolute;
+}
+
 
 /* Section Ghibli info */
 .ghibli_section{
@@ -79,7 +125,7 @@ nav a {
     text-align: center;
 }
 
-/* Section Ghibli info */
+/* Section Quiz */
 .quiz_section{
     display: none;
 }
@@ -95,9 +141,6 @@ nav a {
     border-radius: 1.5em;
 }
 
-.slide img {
-    width: 200px;
-}
 
 .main {
     width: 90%;
@@ -110,6 +153,7 @@ nav a {
     text-align: center;
     margin-top: 1.5em;
 }
+
 
 /* --- Seccion de ordenamiento y filtrado --- */
 .organize {
@@ -126,8 +170,10 @@ nav a {
 
 .select_sort {
     display: none;
+    background-color: #fff;
     position: absolute;
     border: 1px solid gray;
+    border-radius: .5em;
     padding: .5em;
 }
 
@@ -162,7 +208,7 @@ nav a {
 
 /* Seccion de filtrado*/
 .filter_section {
-    margin-right: 2em;
+    margin-right: 5em;
     display: block;
 }
 
@@ -174,13 +220,18 @@ nav a {
 
 .filter {
     display: none;
+    background-color: #fff;
+    border: 1px solid gray;
+    position: absolute;
+    border-radius: .5em;
 }
 
 .filter_section:hover>.filter {
     display: block;
     position: absolute;
-    width: 6em;
-    height: 10em;
+    width: 12em;
+    height: 8em;
+    padding: .5em;
 }
 
 
@@ -203,17 +254,41 @@ nav a {
     width: 80%;
 }
 
+/* Seccion de las cards */
 .card {
     border: .01em solid rgb(179, 179, 179);
     background-color: #e4f3ff;
-    /* background-color: #fff; */
     padding: 2em;
     border-radius: 30px;
+    cursor: pointer;
 }
 
 .card img {
     border-radius: 30px;
 }
+
+
+/* Seccion de info film */
+.titles_info_film{
+    display: none;
+    flex-direction: row;
+    font-size: .8em;
+    background-color: #60a0d1;
+    justify-content: space-around;
+    border-radius: 1em;
+    flex-grow: 1;
+    padding: .8em;
+    width: 80vw;
+    margin-bottom: 2em;
+}
+
+.titles_info_film h2{
+    color: #fff;
+}
+
+.titles_info_film h2:hover{
+    cursor: pointer;
+} 
 
 .container_info {
     display: flex;
@@ -230,12 +305,19 @@ nav a {
     justify-content: center;
 }
 
+.info_card_img {
+    text-align: center;
+}
+
 .info_card_img img {
     border-radius: 2em;
 }
 
+.info_card_title{
+    text-align: center;
+}
+
 .info_card__data {
-    margin: auto;
     padding: 1em;
     text-align: justify;
 }
@@ -248,20 +330,20 @@ nav a {
     }
 
     .info_container_card {
-        width: auto;
+        width: 70vw;
         display: flex;
-        margin: auto;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
     
     }
     .info_card__data {
-        width:50%;
-        margin: auto;
+        width:70%;
         padding: 1em;
-        text-align: justify;
+        text-align: center;
     }
 }
+
+
 
 .year {
     text-align: end;    
@@ -281,7 +363,35 @@ section{
     align-items: center;
 }
 
-.people_img img {
+.people {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #60a0d1;
+    background-color: #e4f3ff;
+    padding: 2.5em;
     border-radius: 30px;
+}
 
+.people_img img {
+    max-width: 282px;
+    border-radius: 30px;
+    margin-bottom: .5em;
+}
+
+
+.locations {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid rgb(179, 179, 179);
+    background-color: #e4f3ff;
+    padding: 2.5em;
+    border-radius: 30px;
+}
+
+.locations_img img {
+    max-width: 282px;
+    border-radius: 30px;
+    margin-bottom: .5em;
 }
