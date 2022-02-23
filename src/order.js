@@ -100,7 +100,6 @@ function filterlist() {
   
   
 function filterByProductor(dir_choice, prod_choice) {
-    // document.getElementById("container_cards").innerHTML = ""
     let filteredList = [];
     for (let filmkey of filmsObj) {
         if ((dir_choice === filmkey.director && prod_choice === filmkey.producer) || (dir_choice === filmkey.director) || (prod_choice === filmkey.producer)) {
