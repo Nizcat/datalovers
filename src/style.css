@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 body {
     font-family:'Hind Madurai', sans-serif;
     font-size: 16px;
@@ -38,7 +39,8 @@ nav ul {
 }
 
 nav ul li {
-    margin: .3em;
+    margin-right: 1em;
+    margin-left: 1em;
 }
 
 ul li img {
@@ -48,7 +50,6 @@ ul li img {
 ul li input {
     width: 6em;
     border-radius: .45em;
-    margin-right: .2em;
 }
 
 nav a {
@@ -97,7 +98,6 @@ nav a {
 
 
 .logo img {
-    margin-left: 2em;
     width: 150px;
     position: absolute;
 }
@@ -126,7 +126,7 @@ nav a {
 }
 
 /* Section Quiz */
-.quiz_section{
+.quiz_section {
     display: none;
 }
 
@@ -135,12 +135,38 @@ nav a {
     font-weight: bold;
 }
 
+.title_quiz {
+ margin: 1em;
+}
+
 .quiz_section img{
     margin-top: 1.2em;
     width: 15em;
     border-radius: 1.5em;
 }
 
+.quiz_container {
+    border: .01em solid #60a0d1;
+    background-color: #e4f3ff;
+    padding: 2em;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family:'Hind Madurai', sans-serif;
+}
+select {
+    display: flex;
+    background-color: #fff;
+    position: absolute;
+    border: 1px solid gray;
+    border-radius: .5em;
+    width: min-content;
+    height: max-content;
+    align-items: center ;
+    
+}
 
 .main {
     width: 90%;
@@ -172,7 +198,7 @@ nav a {
     display: none;
     background-color: #fff;
     position: absolute;
-    border: 1px solid gray;
+    border: 1px solid #60a0d1;
     border-radius: .5em;
     padding: .5em;
 }
@@ -180,15 +206,15 @@ nav a {
 .sort:hover > .select_sort{
     display: block;
     position:absolute;
-    border: 1px solid gray;
+    border: 1px solid #60a0d1;
     padding: .5em;
     
 }
 
 .sort a {
+    font-weight: 800;
     text-decoration: none;
     color: #60a0d1;
-    font-weight: 500;
 }
 
 .select_sort ul li {
@@ -215,13 +241,13 @@ nav a {
 .filter_section a {
     text-decoration: none;
     color: #60a0d1;
-    font-weight: 500;
+    font-weight: 800;
 }
 
 .filter {
     display: none;
     background-color: #fff;
-    border: 1px solid gray;
+    border: 1px solid #60a0d1;
     position: absolute;
     border-radius: .5em;
 }
@@ -256,7 +282,7 @@ nav a {
 
 /* Seccion de las cards */
 .card {
-    border: .01em solid rgb(179, 179, 179);
+    border: .01em solid #60a0d1;
     background-color: #e4f3ff;
     padding: 2em;
     border-radius: 30px;
@@ -267,6 +293,9 @@ nav a {
     border-radius: 30px;
 }
 
+.card_title{
+    font-weight: bold;
+}
 
 /* Seccion de info film */
 .titles_info_film{
@@ -322,28 +351,6 @@ nav a {
     text-align: justify;
 }
 
-@media (min-width: 800px){
-    .info_container{
-        margin: auto;
-        width: auto;
-        height: fit-content;
-    }
-
-    .info_container_card {
-        width: 70vw;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    
-    }
-    .info_card__data {
-        width:70%;
-        padding: 1em;
-        text-align: center;
-    }
-}
-
-
 
 .year {
     text-align: end;    
@@ -384,7 +391,7 @@ section{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid rgb(179, 179, 179);
+    border: 1px solid #60a0d1;
     background-color: #e4f3ff;
     padding: 2.5em;
     border-radius: 30px;
@@ -394,4 +401,84 @@ section{
     max-width: 282px;
     border-radius: 30px;
     margin-bottom: .5em;
+}
+
+footer{
+    justify-content: flex-end;
+    background-color: #60a0d1;
+    color: #fff;
+    font-weight: 800;
+    padding: .2em;
+    width: 100vw;
+    bottom: 0;
+    position: relative;
+}
+
+@media (min-width: 800px){
+    body{
+        font-size: 1.5em;
+    }
+
+      /*  Nav */
+    ul li input {
+        width: 10em;
+        height: 2em;
+        border-radius: .45em;
+        margin-right: .2em;
+    }
+
+    /*  Container */
+    .info_container{
+        margin: auto;
+        width: auto;
+        height: fit-content;
+    }
+
+    .info_container_card {
+        width: 70vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .info_card__data {
+        width:70%;
+        padding: 1em;
+        text-align: center;
+    }
+
+    select {
+        display: flex;
+        background-color: #fff;
+        position: absolute;
+        border: 1px solid gray;
+        border-radius: .5em;
+        font-size: .7em;
+        padding: .4em;
+        width: min-content;
+        height: max-content;
+        align-items: center ;
+        
+    }
+
+    .filter_section:hover>.filter {
+        display: block;
+        position: absolute;
+        width: 10em;
+        height: 7em;
+        padding: .5em;
+        align-items: center;
+    }
+
+    footer{
+        display: flex;
+        justify-content: center;
+        background-color: #60a0d1;
+        color: #fff;
+        font-weight: 800;
+        padding: .2em;
+        width: 100vw;
+        bottom: 0;
+        position: relative;
+    }
 }
