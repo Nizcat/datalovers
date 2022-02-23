@@ -15,7 +15,7 @@
   <header>
     <nav>
       <ul>
-        <li><img src="/img/41AX51uL0dL.svg" alt="logo"></li>
+        <li><img id="logonav" src="/img/41AX51uL0dL.svg" alt="logo"></li>
         <li><a id="ghibli" href="#">Ghibli</a></li>
         <li><a id="quiz" href="#">Quiz</a></li>
         <li>
@@ -34,7 +34,7 @@
         </ul>
       </div>
       <div class="logo">
-        <img class="logonav" id="logonav" src="/img/logo.png" alt="">
+        <img class="logoghibli" id="logoghibli" src="/img/logo.png" alt="">
       </div>
     </section>
   </header>
@@ -57,13 +57,15 @@
         Five of their films have received Academy Award nominations. Spirited Away won the 2002 Golden Bear and the 2003 Academy Award for Best Animated Feature.</p>
     </section>
     <section class="quiz_section">
-      <h1 class="titleQuiz">Quiz</h1>
-      <img src="/img/sjViJ5v.jpeg" alt="">
+      <h1 class="title_quiz">Quiz</h1>
+      <div class="quiz_container" id="quiz_container">
+        
+      </div>
     </section>
     <section class="organize" id="organize">
       <div class="sort">
         <a href="#" role="button" class="sort" id="button_sort" title="Haz click aqui para ordenar las peliculas">
-          <span>Sort by</span>
+          <span>Sort</span>
         </a>
         <div class="select_sort">
           <ul>
@@ -98,14 +100,18 @@
     </div>
     <section class="info_film" id="info_film">
       <div class="container_info" id="container_info"></div>
-      <div class="titles_info_film"><h2 class="title_people" id="title_people">People</h2><h2 class="title_locations" id="title_locations">Locations</h2></h2></div>
+      <div class="titles_info_film">
+        <h2 class="title_people" id="title_people">People</h2>
+        <h2 class="title_locations" id="title_locations">Locations</h2>
+      </div>
       <div class="container_people container_cards" id="container_people">
       </div>
       <div class="container_locations container_cards" id="container_locations">
       </div>
     </section>
   </main>
-  <footer></footer>
+  <footer>By Nizaggie ©Todos los derechos resevados</footer>
+  </section>
   <script src="main.js" type="module"></script>
 </body>
 

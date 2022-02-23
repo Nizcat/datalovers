@@ -2,7 +2,7 @@
 
 import studio from './data/ghibli/ghibli.js';
 import Films from './data.js';
-import { showMorePopular, showYearN, showSortAZ, searchWord, loopShowFilms } from './order.js';
+import { showMorePopular, showYearN, showSortAZ, searchWord, loopShowFilms, filterlist, filterByProductor, quizMood, producer_list, director_list } from './order.js';
 import People from './people.js';
 import Location from './locations.js';
 
@@ -31,13 +31,15 @@ document.getElementById("ghibli").addEventListener('click', function () {
 })
 
 // Logica que muestra el Quiz Ghibli
+const titleMain = document.querySelector(".title_main")
 const sectionQuiz = document.querySelector(".quiz_section")
 document.getElementById("quiz").addEventListener('click', function () {
     document.getElementById("info_film").innerHTML = ""
     document.getElementById("organize").innerHTML = ""
+    titleMain.style.display = 'none'
     filmsDom.innerHTML = ""
+    sectionSlide.style.display = 'flex'
     sectionQuiz.style.display = 'flex'
-    sectionSlide.style.display = 'none'
     sectionGhibli.style.display = 'none'
 })
 
@@ -55,7 +57,7 @@ document.getElementById("search").addEventListener('keypress', function (e) {
 })
 
 
-//Mostrando las peliculas en el Dom
+//  Hace un loop para recorrer el objeto.
 loopShowFilms(filmsObj)
 
 // Función que recibe una instancia de clase de las peliculas y las pinta
@@ -135,7 +137,6 @@ function infoPeople(peopleFilm) {
 
 // Función que recibe una instancia de clase de la información de las peliculas y la pinta.
 function showInfoFilm(filmInfo) {
-    const titleMain = document.querySelector(".title_main")
     titleMain.style.display = 'none'
     document.getElementById("container_cards").innerHTML = ""
     document.getElementById("organize").innerHTML = ""
@@ -238,30 +239,8 @@ document.getElementById('sortza').addEventListener('click', function () {
 
 
 // funcion que filtra la data y devuelve la de interes
-function filter() {
-    let producers = filmsObj.map((filmsObj) => filmsObj.producer);
-    let producer_list = Object.
-        values(producers).reduce((list, prod) => {
-            if (!list.includes(prod)) {
-                list.push(prod);
-            }
-            return list;
-        }, [])
-    let directors = filmsObj.map((filmsObj) => filmsObj.director);
-    let director_list = Object.values(directors).reduce((list, dir) => {
-        if (!list.includes(dir)) {
-            list.push(dir);
-        }
-        return list;
-    }, [])
-    let years = filmsObj.map((filmsObj) => filmsObj.release_date);
-    let year_list = Object.values(years).reduce((list, year) => {
-        if (!list.includes(year)) {
-            list.push(year);
-        }
-        return list;
-    }, [])
-    document.getElementById("filter").innerHTML = `
+filterlist()
+document.getElementById("filter").innerHTML = `
       <form >
       <label for="director" >Directores:
     </label><select id ="director" list="directores">
@@ -274,6 +253,8 @@ function filter() {
     <option value="${director_list[5]}">${director_list[5]}</option>
   </select>
   <br>
+  <br>
+  
   <label for="producer" >Productores:
   </label>
   <select id = "producer" list="producers">
@@ -285,36 +266,57 @@ function filter() {
     <option value="${producer_list[4]}">${producer_list[4]}</option>
    </select>
    <br>
-   <input type="submit" id="filtersubmit">
-  </form>
+     </form>
   `
-    document.getElementById("filtersubmit").addEventListener("click", function show(e) {
-        e.preventDefault()
-        let dir_choice = document.getElementById("director").value;
-        let prod_choice = document.getElementById("producer").value;
-        let filter_list = [];
-        const keysFilms = Object.keys(filmsObj);
-        console.log(keysFilms);
-        for (let i = 0; i < keysFilms.length; i++) {
-            let positionFilm = keysFilms[i];
-            let filmkey = filmsObj[positionFilm];
-            if ((dir_choice === filmkey.director && prod_choice === filmkey.producer && filter_list != filmkey.title) || (dir_choice === filmkey.director && filter_list != filmkey.title) || (prod_choice === filmkey.producer && filter_list != filmkey.title)) {
-                let filmClass = new Films({
-                    id: filmkey.id,
-                    poster: filmkey.poster,
-                    title: filmkey.title,
-                    description: filmkey.description,
-                    director: filmkey.director,
-                    producer: filmkey.producer,
-                    release_date: filmkey.release_date,
-                })
-                filter_list.push(filmClass);
-            }
-        }
-        document.getElementById("container_cards").innerHTML = ""
-        filter_list.map(showFilms)
-    });
-} filter()
+document.getElementById("director").addEventListener("change", function (event) {
+    document.getElementById("container_cards").innerHTML = ""
+    filterByProductor(event.target.value)
+});
+document.getElementById("producer").addEventListener("change", function (event) {
+    document.getElementById("container_cards").innerHTML = ""
+    filterByProductor(event.target.value)
+});
 
-export { showFilms }
+
+
+// Seleccionar pregunta
+document.getElementById("quiz").addEventListener("click", function quiz() {
+    document.getElementById("container_cards").innerHTML = ""
+    document.getElementById("quiz_container").innerHTML = `
+    <form >
+    <label for="director" >¿Cuál es tu nivel de energía ahora?
+  </label><select id ="quizMood" list="energyLevel">
+  <option value=""></option>
+  <option value="elder">Low Battery</option>
+  <option value="adult">Half battery</option>
+  <option value="jung">Full !!</option>
+  </select>
+    `
+    document.getElementById("quizMood").addEventListener("change", function (event) {
+        quizMood(event.target.value);
+
+    });
+});
+
+// Pintar el Personaje Random del Quiz
+function showQuiz(allAges) {
+    document.getElementById("quiz_container").innerHTML =
+      `
+      <div class="quiz_personaje">
+    <h2> El personaje para tu mood de hoy es: </h2>
+   </div>
+    <div class="people_img">
+    <img src="${(allAges[2][1])}" alt="${(allAges[1][1])}"/>
+   </div>
+   <div class="card__data">
+    <h3 class = "card_title">${allAges[1][1]}</h3>
+    <h3 class = "card_title">Gender: ${allAges[3][1]}</h3>
+    <h3 class = "card_title">Age: ${allAges[4][1]}</h3>
+    <h3 class = "card_title">${allAges[1][1]}</h3>
+  </div>
+    `
+}
+
+
+export { showFilms, showQuiz }
 export { filmsObj }
