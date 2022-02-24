@@ -13,8 +13,6 @@ const peopleFilms = document.getElementById("container_people")
 const locationFilms = document.getElementById("container_locations")
 let filmsObj = studio.films;
 
-
-
 // ----- Seccion del NAV -----
 document.getElementById('logonav').addEventListener('click', function () { location.reload() })
 
@@ -52,15 +50,14 @@ document.getElementById("search").addEventListener('keypress', function (e) {
         filmsDom.innerHTML = ""
         sectionQuiz.style.display = 'none'
         sectionGhibli.style.display = 'none'
-        searchWord(word)
+        searchWord(word, filmsObj).map(showFilms)
     }
 })
 
+    console.log(loopShowFilms(filmsObj))  
+
 
 //  Hace un loop para recorrer el objeto.
-loopShowFilms(filmsObj)
-
-// Función que recibe una instancia de clase de las peliculas y las pinta
 function showFilms(film) {
     let id = film.getId()
     const hijo = document.createElement("div")
@@ -81,6 +78,11 @@ function showFilms(film) {
         selectFilm(id)
     })
 }
+
+
+
+
+// Función que recibe una instancia de clase de las peliculas y las pinta
 
 // Funcion que busca la pelicula selecionada
 function selectFilm(id) {
@@ -212,34 +214,34 @@ function showLocations(locationValues) {
 // ordenar por popularidad
 document.getElementById('more_popular').addEventListener('click', function () {
     document.getElementById("container_cards").innerHTML = ""
-    showMorePopular()
+     showMorePopular(filmsObj).map(showFilms)
 })
 
 // Ordenar por los más recientes
 document.getElementById('news').addEventListener('click', function () {
     document.getElementById("container_cards").innerHTML = ""
-    showYearN('news')
+    showYearN(filmsObj, 'news').map(showFilms)
 })
 // Ordenar por los más antiguos 
-document.getElementById('olds').addEventListener('click', function () {
+document.getElementById( 'olds').addEventListener('click', function () {
     document.getElementById("container_cards").innerHTML = ""
-    showYearN('olds')
+    showYearN(filmsObj, 'olds').map(showFilms)
 })
 
 // Ordenar alfabeticamente A-Z
-document.getElementById('sortaz').addEventListener('click', function () {
+document.getElementById( 'sortaz').addEventListener('click', function () {
     document.getElementById("container_cards").innerHTML = ""
-    showSortAZ('sortaz')
+    showSortAZ(filmsObj, 'sortaz').map(showFilms)
 })
 // Ordenar alfabeticamente Z-A
-document.getElementById('sortza').addEventListener('click', function () {
+document.getElementById( 'sortza').addEventListener('click', function () {
     document.getElementById("container_cards").innerHTML = ""
-    showSortAZ('sortza')
+    showSortAZ(filmsObj, 'sortza').map(showFilms)
 })
 
 
 // funcion que filtra la data y devuelve la de interes
-filterlist()
+filterlist(filmsObj)
 document.getElementById("filter").innerHTML = `
       <form >
       <label for="director" >Directores:
@@ -270,11 +272,17 @@ document.getElementById("filter").innerHTML = `
   `
 document.getElementById("director").addEventListener("change", function (event) {
     document.getElementById("container_cards").innerHTML = ""
-    filterByProductor(event.target.value)
+   filterByProductor(filmsObj, event.target.value).map(showFilms)
+   
+
+    
+    
 });
 document.getElementById("producer").addEventListener("change", function (event) {
     document.getElementById("container_cards").innerHTML = ""
-    filterByProductor(event.target.value)
+    filterByProductor(filmsObj, event.target.value)
+    filterByProductor(filmsObj, event.target.value).map(showFilms)
+  
 });
 
 
@@ -293,7 +301,7 @@ document.getElementById("quiz").addEventListener("click", function quiz() {
   </select>
     `
     document.getElementById("quizMood").addEventListener("change", function (event) {
-        quizMood(event.target.value);
+        quizMood(event.target.value).map(showQuiz)
 
     });
 });
@@ -318,5 +326,4 @@ function showQuiz(allAges) {
 }
 
 
-export { showFilms, showQuiz }
-export { filmsObj }
+
