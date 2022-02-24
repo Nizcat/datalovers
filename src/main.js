@@ -13,6 +13,7 @@ const peopleFilms = document.getElementById("container_people")
 const locationFilms = document.getElementById("container_locations")
 let filmsObj = studio.films;
 
+
 // ----- Seccion del NAV -----
 document.getElementById('logonav').addEventListener('click', function () { location.reload() })
 
@@ -54,7 +55,9 @@ document.getElementById("search").addEventListener('keypress', function (e) {
     }
 })
 
-    console.log(loopShowFilms(filmsObj))  
+loopShowFilms(filmsObj).map(showFilms)
+
+      
 
 
 //  Hace un loop para recorrer el objeto.
@@ -79,7 +82,26 @@ function showFilms(film) {
     })
 }
 
-
+function showFilmsArray(film) {
+    let id = film.id
+    const hijo = document.createElement("div")
+    hijo.classList.add("card")
+    hijo.id = film.id
+    hijo.innerHTML = `
+    <div class="card_img" id="${film.id}">
+        <img src="${film.poster}" alt="${film.title}"/>
+    </div>
+    <div class="card__data">
+        <h3 class = "card_title">${film.title}</h3>
+    </div>
+    `
+    filmsDom.appendChild(hijo)
+    document.getElementById(id).addEventListener('click', function () {
+        const titlesInfoFilm = document.querySelector(".titles_info_film")
+        titlesInfoFilm.style.display = 'flex'
+        selectFilm(id)
+    })
+}
 
 
 // Función que recibe una instancia de clase de las peliculas y las pinta
@@ -214,29 +236,29 @@ function showLocations(locationValues) {
 // ordenar por popularidad
 document.getElementById('more_popular').addEventListener('click', function () {
     document.getElementById("container_cards").innerHTML = ""
-     showMorePopular(filmsObj).map(showFilms)
+    showMorePopular(filmsObj).map(showFilmsArray)
 })
 
 // Ordenar por los más recientes
 document.getElementById('news').addEventListener('click', function () {
     document.getElementById("container_cards").innerHTML = ""
-    showYearN(filmsObj, 'news').map(showFilms)
+    showYearN(filmsObj).map(showFilmsArray) 
 })
 // Ordenar por los más antiguos 
 document.getElementById( 'olds').addEventListener('click', function () {
     document.getElementById("container_cards").innerHTML = ""
-    showYearN(filmsObj, 'olds').map(showFilms)
+    showYearN(filmsObj).reverse().map(showFilmsArray)
 })
 
 // Ordenar alfabeticamente A-Z
 document.getElementById( 'sortaz').addEventListener('click', function () {
     document.getElementById("container_cards").innerHTML = ""
-    showSortAZ(filmsObj, 'sortaz').map(showFilms)
+    showSortAZ(filmsObj).map(showFilmsArray)
 })
 // Ordenar alfabeticamente Z-A
 document.getElementById( 'sortza').addEventListener('click', function () {
     document.getElementById("container_cards").innerHTML = ""
-    showSortAZ(filmsObj, 'sortza').map(showFilms)
+    showSortAZ(filmsObj).reverse().map(showFilmsArray)
 })
 
 
@@ -301,8 +323,7 @@ document.getElementById("quiz").addEventListener("click", function quiz() {
   </select>
     `
     document.getElementById("quizMood").addEventListener("change", function (event) {
-        quizMood(event.target.value).map(showQuiz)
-
+        showQuiz(quizMood(filmsObj, event.target.value))
     });
 });
 
