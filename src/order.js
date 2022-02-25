@@ -48,6 +48,7 @@ function searchWord(word, anObject) {
     }
   })
   searchW = loopShowFilms(foundword, anObject)
+  
   return searchW
 }
 // función que rrecorre un array con las peliculas ordenadas del más popular al menos. 
