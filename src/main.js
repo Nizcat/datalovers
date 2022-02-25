@@ -323,7 +323,7 @@ document.getElementById("quiz").addEventListener("click", function quiz() {
   </select>
     `
     document.getElementById("quizMood").addEventListener("change", function (event) {
-        showQuiz(quizMood(filmsObj, event.target.value))
+       showQuiz(quizMood(filmsObj, event.target.value));
     });
 });
 

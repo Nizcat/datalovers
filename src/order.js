@@ -1,6 +1,17 @@
 import Films from './data.js'
 import People from './people.js'
-
+export {
+  showMorePopular,
+  showYearN,
+  showSortAZ,
+  searchWord,
+  loopShowFilms,
+  filterlist,
+  filterByProductor,
+  quizMood,
+  director_list,
+  producer_list
+}
 
 
 function loopShowFilms(anObject) {
@@ -47,7 +58,6 @@ function showMorePopular(anObject) {
   let showMp = ""
   const sortPopular = anObject.sort(function (f1, f2) {
     return f1.rt_score - f2.rt_score
-
   })
   showMp = sortPopular
   return showMp
@@ -123,13 +133,11 @@ function filterByProductor(anObject, dir_choice, prod_choice) {
 
 }
 
-function getRandomInt(min, max) {
-  return (Math.floor(Math.random() * (max - min)) + min);
-}
 
-function quizMood(anObject, mood) {
-  let arrayJung = [];
-  let arrayAdult = [];
+
+function quizMood(anObject, mood) { //recibe un objeto y separa por edades los personajes para
+  let arrayJung = [];               // regresar un personaje random dependiendo de la opción que 
+  let arrayAdult = [];              // escogió, el usuario, en el quiz.
   let arrayElder = [];
   for (let keyfilm of anObject) {
     for (let characters of keyfilm.people) {
@@ -169,9 +177,13 @@ function quizMood(anObject, mood) {
       }
     }
   }
+  function getRandomInt(min, max) {
+    return (Math.floor(Math.random() * (max - min)) + min);
+  }
   let elderChar = arrayElder[getRandomInt(0, 15)];
   let adultChar = arrayAdult[getRandomInt(0, 30)];
   let jungChar = arrayJung[getRandomInt(0, 30)];
+  
   
   if (mood === "jung") {
     return jungChar
@@ -183,15 +195,4 @@ function quizMood(anObject, mood) {
 }
 
 
-export {
-  showMorePopular,
-  showYearN,
-  showSortAZ,
-  searchWord,
-  loopShowFilms,
-  filterlist,
-  filterByProductor,
-  quizMood,
-  director_list,
-  producer_list
-}
+
