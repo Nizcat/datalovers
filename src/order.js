@@ -49,10 +49,7 @@ function searchWord(word, anObject) {
   })
   searchW = loopShowFilms(foundword, anObject)
   return searchW
-
 }
-
-
 // función que rrecorre un array con las peliculas ordenadas del más popular al menos. 
 function showMorePopular(anObject) {
   let showMp = ""
@@ -61,9 +58,7 @@ function showMorePopular(anObject) {
   })
   showMp = sortPopular
   return showMp
-
 }
-
 // función que rrecorre un array con las peliculas ordenadas del la pelicula más reciente o la menos.
 function showYearN(anObject) {
   const sortYear = anObject.sort(function (f1, f2) {
@@ -86,6 +81,7 @@ function showSortAZ(anObject) {
       return -1
     }
   })
+
   return sortAZ
 
 }
@@ -136,8 +132,8 @@ function filterByProductor(anObject, dir_choice, prod_choice) {
 
 
 function quizMood(anObject, mood) { //recibe un objeto y separa por edades los personajes para
-  let arrayJung = [];               // regresar un personaje random dependiendo de la opción que 
-  let arrayAdult = [];              // escogió, el usuario, en el quiz.
+  let arrayJung = []; // regresar un personaje random dependiendo de la opción que 
+  let arrayAdult = []; // escogió, el usuario, en el quiz.
   let arrayElder = [];
   for (let keyfilm of anObject) {
     for (let characters of keyfilm.people) {
@@ -177,14 +173,15 @@ function quizMood(anObject, mood) { //recibe un objeto y separa por edades los p
       }
     }
   }
+
   function getRandomInt(min, max) {
     return (Math.floor(Math.random() * (max - min)) + min);
   }
   let elderChar = arrayElder[getRandomInt(0, 15)];
   let adultChar = arrayAdult[getRandomInt(0, 30)];
   let jungChar = arrayJung[getRandomInt(0, 30)];
-  
-  
+
+
   if (mood === "jung") {
     return jungChar
   } else if (mood === "adult") {
@@ -193,6 +190,3 @@ function quizMood(anObject, mood) { //recibe un objeto y separa por edades los p
     return elderChar
   }
 }
-
-
-

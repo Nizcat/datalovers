@@ -7,8 +7,6 @@ import {
   loopShowFilms,
   quizMood
 } from '../src/order.js';
-
-// , , , , ,  , , moodSelection
 const miniFilms = [{
     id: '2baf70d1-42bb-4437-b551-e5fed5a87abe',
     title: 'Castle in the Sky',
@@ -51,6 +49,38 @@ const miniFilms = [{
     rt_score: "93"
   }
 ]
+
+let miniFilms2 = [{
+  "id": "2baf70d1-42bb-4437-b551-e5fed5a87abe",
+  "title": "Castle in the Sky",
+  "description": "The orphan Sheeta inherited a mysterious crystal that links her to the mythical sky-kingdom of Laputa. With the help of resourceful Pazu and a rollicking band of sky pirates, she makes her way to the ruins of the once-great civilization. Sheeta and Pazu must outwit the evil Muska, who plans to use Laputa's science to make himself ruler of the world.",
+  "director": "Hayao Miyazaki",
+  "producer": "Isao Takahata",
+  "poster": "https://static.wikia.nocookie.net/studio-ghibli/images/c/c1/Castle_in_the_Sky.jpg",
+  "release_date": "1986",
+  "rt_score": "95",
+  "people": [{
+      "id": "fe93adf2-2f3a-4ec4-9f68-5422f1b87c01",
+      "name": "Pazu",
+      "img": "https://static.wikia.nocookie.net/studio-ghibli/images/8/8b/Pazu.jpg",
+      "gender": "Male",
+      "age": "13",
+      "eye_color": "Black",
+      "hair_color": "Brown",
+      "specie": "Human"
+    },
+    {
+      "id": "598f7048-74ff-41e0-92ef-87dc1ad980a9",
+      "name": "Lusheeta Toel Ul Laputa",
+      "img": "https://static.wikia.nocookie.net/studio-ghibli/images/c/c3/Sheeta.jpg",
+      "gender": "Female",
+      "age": "13",
+      "eye_color": "Black",
+      "hair_color": "Black",
+      "specie": "Human"
+    }
+  ]
+}]
 
 let loopFilter = [{
     id: "2baf70d1-42bb-4437-b551-e5fed5a87abe",
@@ -111,9 +141,7 @@ let filterTest = [{
 
 ]
 
-
 describe('filterByProductor', () => {
-
   it('is a function', () => {
     expect(typeof filterByProductor).toBe('function');
   });
@@ -121,152 +149,90 @@ describe('filterByProductor', () => {
   it('should return an array ', () => {
     expect(filterByProductor(miniFilms, dir_choice, prod_choice)).toEqual(filterTest);
   });
-
 })
-
-/* let miniCharacters = [{
-    "id": "2baf70d1-42bb-4437-b551-e5fed5a87abe",
-    "title": "Castle in the Sky",
-    "description": "The orphan Sheeta inherited a mysterious crystal that links her to the mythical sky-kingdom of Laputa. With the help of resourceful Pazu and a rollicking band of sky pirates, she makes her way to the ruins of the once-great civilization. Sheeta and Pazu must outwit the evil Muska, who plans to use Laputa's science to make himself ruler of the world.",
-    "director": "Hayao Miyazaki",
-    "producer": "Isao Takahata",
-    "poster": "https://static.wikia.nocookie.net/studio-ghibli/images/c/c1/Castle_in_the_Sky.jpg",
-    "release_date": "1986",
-    "rt_score": "95",
-    "people": [{
-        "id": "fe93adf2-2f3a-4ec4-9f68-5422f1b87c01",
-        "name": "Pazu",
-        "img": "https://static.wikia.nocookie.net/studio-ghibli/images/8/8b/Pazu.jpg",
-        "gender": "Male",
-        "age": "13",
-        "eye_color": "Black",
-        "hair_color": "Brown",
-        "specie": "Human"
-      },
-     
-      {
-        "id": "3bc0b41e-3569-4d20-ae73-2da329bf0786",
-        "name": "Dola",
-        "img": "https://static.wikia.nocookie.net/studio-ghibli/images/b/b3/Dola.png",
-        "gender": "Female",
-        "age": "60",
-        "eye_color": "Black",
-        "hair_color": "Peach",
-        "specie": "Human"
-      }
-    ]
-  }
-
-]
-
-let mood ="jung"
-let moodTestResult = [
-  {id: "fe93adf2-2f3a-4ec4-9f68-5422f1b87c01"},
-  {name: "Pazu"},
-  {img: "https://static.wikia.nocookie.net/studio-ghibli/images/8/8b/Pazu.jpg"},
-  {gender: "Male"},
-  {age: "13"},
-  {eye_color: undefined},
-  {hair_color: undefined},
-  {specie: "Human"}  
-     ] */
 
 describe('quizMood', () => {
 
   it('is a function', () => {
     expect(typeof quizMood).toBe('function');
   });
-  /* 
-    it('should return a character in an  form', () => {
-      expect(quizMood(miniCharacters, mood)).toEqual(moodTestResult);
-    });
-   */
+})
+
+
+let wordTest = [{
+  id: "2baf70d1-42bb-4437-b551-e5fed5a87abe",
+  poster: "https://static.wikia.nocookie.net/studio-ghibli/images/c/c1/Castle_in_the_Sky.jpg",
+  title: "Castle in the Sky",
+  director: undefined,
+  producer: undefined,
+  description: undefined,
+  release_date: undefined,
+  rt_score: "95"
+}]
+
+describe('searchWord', () => {
+  it('is a function', () => {
+    expect(typeof searchWord).toBe('function');
+  });
+
+  it('is a function', () => {
+    expect(searchWord("castle", miniFilms2)).toEqual(wordTest);
+  });
+
+  it('is a function', () => {
+    expect(searchWord("Hayao", miniFilms2)).toEqual(wordTest);
+  });
+
+  it('is a function', () => {
+    expect(searchWord("1986", miniFilms2)).toEqual(wordTest);
+  });
+
+  it('is a function', () => {
+    expect(searchWord("Pazu", miniFilms2)).toEqual(wordTest);
+  });
 
 })
 
-let miniFilms2 = {
-    "films": [{
-          "id": "2baf70d1-42bb-4437-b551-e5fed5a87abe",
-          "title": "Castle in the Sky",
-          "description": "The orphan Sheeta inherited a mysterious crystal that links her to the mythical sky-kingdom of Laputa. With the help of resourceful Pazu and a rollicking band of sky pirates, she makes her way to the ruins of the once-great civilization. Sheeta and Pazu must outwit the evil Muska, who plans to use Laputa's science to make himself ruler of the world.",
-          "director": "Hayao Miyazaki",
-          "producer": "Isao Takahata",
-          "poster": "https://static.wikia.nocookie.net/studio-ghibli/images/c/c1/Castle_in_the_Sky.jpg",
-          "release_date": "1986",
-          "rt_score": "95",
-          "people": [{
-              "id": "fe93adf2-2f3a-4ec4-9f68-5422f1b87c01",
-              "name": "Pazu",
-              "img": "https://static.wikia.nocookie.net/studio-ghibli/images/8/8b/Pazu.jpg",
-              "gender": "Male",
-              "age": "13",
-              "eye_color": "Black",
-              "hair_color": "Brown",
-              "specie": "Human"
-            },
-            {
-              "id": "598f7048-74ff-41e0-92ef-87dc1ad980a9",
-              "name": "Lusheeta Toel Ul Laputa",
-              "img": "https://static.wikia.nocookie.net/studio-ghibli/images/c/c3/Sheeta.jpg",
-              "gender": "Female",
-              "age": "13",
-              "eye_color": "Black",
-              "hair_color": "Black",
-              "specie": "Human"
-            }
-          ]
-        }]
-      }
+describe('showSortAZ', () => {
+
+  it('is a function', () => {
+    expect(typeof showSortAZ).toBe('function');
+  });
+   it('is a function', () => {
+     expect(showSortAZ([{ "id": "11", "title": "From Up on Poppy Hill", }, { "id": "45", "title": "Castle in the Sky" }])).toEqual([ { "id": "45", "title": "Castle in the Sky", }, { "id": "11", "title": "From Up on Poppy Hill" } ]);
+    });
+   }); 
 
 
+describe('showYearN', () => {
+  it('is a function', () => {
+    expect(typeof showYearN).toBe('function');
+  });
+  it('is a function', () => {
+    expect(showYearN([{id: '2baf70d1-42bb-4437-b551-e5fed5a87abe',
+    title: 'Castle in the Sky',
+    release_date: "1986"},
+    {id: "58611129-2dbc-4a81-a72f-77ddfc1b1b49",
+     title: "My Neighbor Totoro",
+     release_date: "1988"}
+    ])).toEqual([
+    {id: "58611129-2dbc-4a81-a72f-77ddfc1b1b49",
+     title: "My Neighbor Totoro",
+     release_date: "1988"},{id: '2baf70d1-42bb-4437-b551-e5fed5a87abe',
+     title: 'Castle in the Sky',
+     release_date: "1986"}
+    ]);
+  });
+  
+})
 
+describe('filterlist', () => {
 
-        let word = "Pazu"
-        let wordTest = [{
-          id: "2baf70d1-42bb-4437-b551-e5fed5a87abe",
-          poster: "https://static.wikia.nocookie.net/studio-ghibli/images/c/c1/Castle_in_the_Sky.jpg",
-          title: "Castle in the Sky",
-          director: undefined,
-          producer: undefined,
-          description: undefined,
-          release_date: undefined,
-          rt_score: "95"
-        }]
+  it('is a function', () => {
+    expect(typeof filterlist).toBe('function');
+  });
+  it('is a function', () => {
+    expect(filterlist(miniFilms)).toEqual();
+  });
 
-        describe('searchWord', () => {
-
-          it('is a function', () => {
-            expect(typeof searchWord).toBe('function');
-          });
-
-          it('is a function', () => {
-            expect(searchWord(word, miniFilms2)).toEqual(wordTest);
-          });
-
-        })
-
-        describe('showSortAZ', () => {
-
-          it('is a function', () => {
-            expect(typeof showSortAZ).toBe('function');
-          });
-          /*  it('is a function', () => {
-             expect(showSortAZ(miniFilms)).toEqual();
-           }); */
-
-        })
-        describe('showYearN', () => {
-
-          it('is a function', () => {
-            expect(typeof showYearN).toBe('function');
-          });
-
-        })
-
-        describe('filterlist', () => {
-
-          it('is a function', () => {
-            expect(typeof filterlist).toBe('function');
-          });
-
-        })
+})

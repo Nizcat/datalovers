@@ -4,7 +4,7 @@ import Films from '../src/data.js';
 
 
 describe('data', () => {
-  const film = new Films(1, 'title', 'description', 'director', 'producer', 'poster', 'date', 'score')
+  const film = new Films("id", 'title', 'description', 'director', 'producer', 'poster', 'date', 'score')
 
   it('should be a function', () => {
     expect(typeof Films).toBe('function');
