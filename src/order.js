@@ -19,7 +19,11 @@ function loopShowFilms(anObject) {
       id: film.id,
       poster: film.poster,
       title: film.title,
-      score: film.rt_score
+      score: film.rt_score,
+      description: film.description,
+      director: film.director,
+      producer: film.producer,
+      release_date: film.release_date
     })
     arrayFilms.push(filmValues)
   }

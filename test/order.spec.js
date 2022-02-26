@@ -85,21 +85,22 @@ let loopFilter = [{
     id: "2baf70d1-42bb-4437-b551-e5fed5a87abe",
     poster: "https://static.wikia.nocookie.net/studio-ghibli/images/c/c1/Castle_in_the_Sky.jpg",
     title: "Castle in the Sky",
-    director: undefined,
-    producer: undefined,
-    description: undefined,
-    release_date: undefined,
-    rt_score: "95"
+    rt_score: "95",
+    description: "https://static.wikia.nocookie.net/studio-ghibli/images/c/c1/Castle_in_the_Sky.jpg",
+    director: "Hayao Miyazaki",
+    producer: "Isao Takahata",    
+    release_date: "1986"
+    
   },
   {
     id: "58611129-2dbc-4a81-a72f-77ddfc1b1b49",
     poster: "https://static.wikia.nocookie.net/studio-ghibli/images/d/db/My_Neighbor_Totoro.jpg",
     title: "My Neighbor Totoro",
-    director: undefined,
-    producer: undefined,
-    description: undefined,
     rt_score: "93",
-    release_date: undefined
+    description: "Two sisters move to the country with their father in order to be closer to their hospitalized mother, and discover the surrounding trees are inhabited by Totoros, magical spirits of the forest. When the youngest runs away from home, the older sister seeks help from the spirits to find her.",
+    director: "Hayao Miyazaki",
+    producer: "Hayao Miyazaki", 
+    release_date: "1988"
   }
 
 ]
