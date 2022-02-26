@@ -47,15 +47,15 @@ function searchWord(word, anObject) {
       return false
     }
   })
-  searchW = loopShowFilms(foundword, anObject)
+  searchW = loopShowFilms(foundword)
   
   return searchW
 }
 // función que rrecorre un array con las peliculas ordenadas del más popular al menos. 
 function showMorePopular(anObject) {
   let showMp = ""
-  const sortPopular = anObject.sort(function (f1, f2) {
-    return f1.rt_score - f2.rt_score
+  const sortPopular = anObject.sort(function (film1, film2) {
+    return film1.rt_score - film2.rt_score
   })
   showMp = sortPopular
   return showMp

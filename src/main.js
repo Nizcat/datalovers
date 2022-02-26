@@ -302,9 +302,7 @@ document.getElementById("director").addEventListener("change", function (event) 
 });
 document.getElementById("producer").addEventListener("change", function (event) {
     document.getElementById("container_cards").innerHTML = ""
-    filterByProductor(filmsObj, event.target.value)
     filterByProductor(filmsObj, event.target.value).map(showFilms)
-  
 });
 
 
