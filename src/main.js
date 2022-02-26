@@ -74,16 +74,16 @@ loopShowFilms(filmsObj).map(showFilms)
 
 //Renderiza las películas de Ghibli según la función que la llame
 function showFilms(film) {
-  let id = film.getId()
+  let id = film.id
   const hijo = document.createElement("div")
   hijo.classList.add("card")
   hijo.id = film.getId()
   hijo.innerHTML = `
-    <div class="card_img" id="${film.getId()}">
-        <img src="${film.getPoster()}" alt="${film.getTitle()}"/>
+    <div class="card_img" id="${film.id}">
+        <img src="${film.poster}" alt="${film.title}"/>
     </div>
     <div class="card__data">
-        <h3 class = "card_title">${film.getTitle()}</h3>
+        <h3 class = "card_title">${film.title}</h3>
     </div>
     `
   filmsDom.appendChild(hijo)
@@ -114,10 +114,9 @@ function showFilmsArray(film) {
     titlesInfoFilm.style.display = 'flex'
     selectFilm(id)
   })
-}
 
-// Funcion que busca la pelicula selecionada y renderiza la info ampliada, personajes
-let locationsFilm = {}
+
+
 function selectFilm(id, locationsFilm) {
   let filmselected = {}
   let peopleFilm = {}
@@ -136,7 +135,7 @@ function selectFilm(id, locationsFilm) {
        
 }
 
-
+}
 
 
   document.getElementById('title_locations').addEventListener('click', function () {
