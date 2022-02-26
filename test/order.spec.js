@@ -1,11 +1,10 @@
 import {
-  showYearN,
-  showSortAZ,
   searchWord,
   filterlist,
   filterByProductor,
   loopShowFilms,
-  quizMood
+  quizMood,
+  sorting
 } from '../src/order.js';
 const miniFilms = [{
     id: '2baf70d1-42bb-4437-b551-e5fed5a87abe',
@@ -193,37 +192,115 @@ describe('searchWord', () => {
 
 })
 
-describe('showSortAZ', () => {
+describe('sorting', () => {
 
   it('is a function', () => {
-    expect(typeof showSortAZ).toBe('function');
-  });
-   it('is a function', () => {
-     expect(showSortAZ([{ "id": "11", "title": "From Up on Poppy Hill", }, { "id": "45", "title": "Castle in the Sky" }])).toEqual([ { "id": "45", "title": "Castle in the Sky", }, { "id": "11", "title": "From Up on Poppy Hill" } ]);
-    });
-   }); 
-
-
-describe('showYearN', () => {
-  it('is a function', () => {
-    expect(typeof showYearN).toBe('function');
+    expect(typeof sorting).toBe('function');
   });
   it('is a function', () => {
-    expect(showYearN([{id: '2baf70d1-42bb-4437-b551-e5fed5a87abe',
-    title: 'Castle in the Sky',
-    release_date: "1986"},
-    {id: "58611129-2dbc-4a81-a72f-77ddfc1b1b49",
-     title: "My Neighbor Totoro",
-     release_date: "1988"}
-    ])).toEqual([
-    {id: "58611129-2dbc-4a81-a72f-77ddfc1b1b49",
-     title: "My Neighbor Totoro",
-     release_date: "1988"},{id: '2baf70d1-42bb-4437-b551-e5fed5a87abe',
-     title: 'Castle in the Sky',
-     release_date: "1986"}
+    expect(sorting("sortaz", [{
+      "id": "11",
+      "title": "From Up on Poppy Hill",
+    }, {
+      "id": "45",
+      "title": "Castle in the Sky"
+    }])).toEqual([{
+      "id": "45",
+      "title": "Castle in the Sky",
+    }, {
+      "id": "11",
+      "title": "From Up on Poppy Hill"
+    }]);
+  });
+  it('is a function', () => {
+    expect(sorting("news", [{
+        id: '2baf70d1-42bb-4437-b551-e5fed5a87abe',
+        title: 'Castle in the Sky',
+        release_date: "1986"
+      },
+      {
+        id: "58611129-2dbc-4a81-a72f-77ddfc1b1b49",
+        title: "My Neighbor Totoro",
+        release_date: "1988"
+      }
+    ])).toEqual([{
+      id: "58611129-2dbc-4a81-a72f-77ddfc1b1b49",
+      title: "My Neighbor Totoro",
+      release_date: "1988"
+    }, {
+      id: '2baf70d1-42bb-4437-b551-e5fed5a87abe',
+      title: 'Castle in the Sky',
+      release_date: "1986"
+    }]);
+  });
+  it('is a function', () => {
+    expect(sorting("sortza", [{
+        id: '2baf70d1-42bb-4437-b551-e5fed5a87abe',
+        title: 'Castle in the Sky',
+        release_date: "1986"
+      },
+      {
+        id: "58611129-2dbc-4a81-a72f-77ddfc1b1b49",
+        title: "My Neighbor Totoro",
+        release_date: "1988"
+      }
+    ])).toEqual([{
+      id: "58611129-2dbc-4a81-a72f-77ddfc1b1b49",
+      title: "My Neighbor Totoro",
+      release_date: "1988"
+    }, {
+      id: '2baf70d1-42bb-4437-b551-e5fed5a87abe',
+      title: 'Castle in the Sky',
+      release_date: "1986"
+    }]);
+  });
+  it('is a function', () => {
+    expect(sorting("olds", [{
+        id: '2baf70d1-42bb-4437-b551-e5fed5a87abe',
+        title: 'Castle in the Sky',
+        release_date: "1986"
+      },
+      {
+        id: "58611129-2dbc-4a81-a72f-77ddfc1b1b49",
+        title: "My Neighbor Totoro",
+        release_date: "1988"
+      }
+    ])).toEqual([{
+      id: '2baf70d1-42bb-4437-b551-e5fed5a87abe',
+      title: 'Castle in the Sky',
+      release_date: "1986"
+    },
+    {
+      id: "58611129-2dbc-4a81-a72f-77ddfc1b1b49",
+      title: "My Neighbor Totoro",
+      release_date: "1988"
+    }]);
+  });
+  it('is a function', () => {
+    expect(sorting("more_popular", [{
+        id: '2baf70d1-42bb-4437-b551-e5fed5a87abe',
+        title: 'Castle in the Sky',
+        release_date: "1986"
+      },
+      {
+        id: "58611129-2dbc-4a81-a72f-77ddfc1b1b49",
+        title: "My Neighbor Totoro",
+        release_date: "1988"
+      }
+    ])).toEqual([{
+        id: '2baf70d1-42bb-4437-b551-e5fed5a87abe',
+        title: 'Castle in the Sky',
+        release_date: "1986"
+      },
+      {
+        id: "58611129-2dbc-4a81-a72f-77ddfc1b1b49",
+        title: "My Neighbor Totoro",
+        release_date: "1988"
+      }
     ]);
   });
-  
+
+
 })
 
 describe('filterlist', () => {

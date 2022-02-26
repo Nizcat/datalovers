@@ -2,7 +2,7 @@
 
 import studio from './data/ghibli/ghibli.js';
 import Films from './data.js';
-import { showMorePopular, showYearN, showSortAZ, searchWord, loopShowFilms, filterlist, filterByProductor, quizMood, producer_list, director_list } from './order.js';
+import {sorting, searchWord, loopShowFilms, filterlist, filterByProductor, quizMood, producer_list, director_list } from './order.js';
 import People from './people.js';
 import Location from './locations.js';
 
@@ -14,7 +14,7 @@ const locationFilms = document.getElementById("container_locations")
 let filmsObj = studio.films;
 
 
-// ----- Seccion del NAV -----
+//Img del logo recarga la página
 document.getElementById('logonav').addEventListener('click', function () { location.reload() })
 
 // Logica que muestra la info Ghibli
@@ -55,12 +55,13 @@ document.getElementById("search").addEventListener('keypress', function (e) {
     }
 })
 
+//Muestra las películas de Ghibli 
 loopShowFilms(filmsObj).map(showFilms)
 
       
 
 
-//  Hace un loop para recorrer el objeto.
+//Renderiza las películas de Ghibli según la función que la llame
 function showFilms(film) {
     let id = film.getId()
     const hijo = document.createElement("div")
@@ -82,6 +83,7 @@ function showFilms(film) {
     })
 }
 
+//Renderiza de las películas para:
 function showFilmsArray(film) {
     let id = film.id
     const hijo = document.createElement("div")
@@ -103,10 +105,7 @@ function showFilmsArray(film) {
     })
 }
 
-
-// Función que recibe una instancia de clase de las peliculas y las pinta
-
-// Funcion que busca la pelicula selecionada
+// Funcion que busca la pelicula selecionada y renderiza la info ampliada, personajes
 function selectFilm(id) {
     let filmselected = {}
     let peopleFilm = {}
@@ -231,35 +230,24 @@ function showLocations(locationValues) {
 }
 
 
-
+document.getElementById("sorting").innerHTML = `
+      <form >
+      <label for="sort" >Ordena por:
+    </label><select id ="sort" list="ordering">
+    <option value="more_popular">Popular</option>
+    <option value="news">Newer</option>
+    <option value="olds">Older</option>
+    <option value="sortaz">Title A-Z</option>
+    <option value="sortza">Title Z-A</option>
+    </select>
+    `
 // ---------  Seccion de ordenamiento  -----------
 // ordenar por popularidad
-document.getElementById('more_popular').addEventListener('click', function () {
+document.getElementById('sort').addEventListener('change', function (event) {
     document.getElementById("container_cards").innerHTML = ""
-    showMorePopular(filmsObj).map(showFilmsArray)
+    sorting(event.target.value, filmsObj).map(showFilmsArray)
 })
 
-// Ordenar por los más recientes
-document.getElementById('news').addEventListener('click', function () {
-    document.getElementById("container_cards").innerHTML = ""
-    showYearN(filmsObj).map(showFilmsArray) 
-})
-// Ordenar por los más antiguos 
-document.getElementById( 'olds').addEventListener('click', function () {
-    document.getElementById("container_cards").innerHTML = ""
-    showYearN(filmsObj).reverse().map(showFilmsArray)
-})
-
-// Ordenar alfabeticamente A-Z
-document.getElementById( 'sortaz').addEventListener('click', function () {
-    document.getElementById("container_cards").innerHTML = ""
-    showSortAZ(filmsObj).map(showFilmsArray)
-})
-// Ordenar alfabeticamente Z-A
-document.getElementById( 'sortza').addEventListener('click', function () {
-    document.getElementById("container_cards").innerHTML = ""
-    showSortAZ(filmsObj).reverse().map(showFilmsArray)
-})
 
 
 // funcion que filtra la data y devuelve la de interes
@@ -302,7 +290,6 @@ document.getElementById("director").addEventListener("change", function (event) 
 });
 document.getElementById("producer").addEventListener("change", function (event) {
     document.getElementById("container_cards").innerHTML = ""
-    filterByProductor(filmsObj, event.target.value)
     filterByProductor(filmsObj, event.target.value).map(showFilms)
   
 });

@@ -15,7 +15,7 @@
   <header>
     <nav>
       <ul>
-        <li><img id="logonav" src="/img/41AX51uL0dL.svg" alt="logo"></li>
+        <li><img id="logonav" src="../src/img/41AX51uL0dL.svg" alt="logo"></li>
         <li><a id="ghibli" href="#">Ghibli</a></li>
         <li><a id="quiz" href="#">Quiz</a></li>
         <li>
@@ -72,33 +72,18 @@
       </div>
     </section>
     <section class="organize" id="organize">
-      <div class="sort">
-        <a href="#" role="button" class="sort" id="button_sort" title="Haz click aqui para ordenar las peliculas">
-          <span>Sort</span>
-        </a>
-        <div class="select_sort">
-          <ul>
-            <li>
-              <label id="more_popular" title="Ordenar de los mas destacados a los menos">Popular</label>
-            </li>
-            <li>
-              <label id="news" title="Ordenar del más reciente al más antigüo">More News</label>
-            </li>
-            <li>
-              <label id="olds" title="Ordenar del más antigüo al más reciente">More Olds</label>
-            </li>
-            <li>
-              <label id="sortaz" title="Ordenar alfabeticamente de la A-Z">Alphabeth A-Z</label>
-            </li>
-            <li>
-              <label id="sortza" title="Ordenar alfabeticamente de la Z-A">Alphabeth Z-A</label>
-            </li>
-          </ul>
+      <section>
+        <div class="sort">
+          <a href="#" role="button" class="sort" id="button_sort" title="Haz click aqui para ordenar las peliculas">
+            <span>Sort</span>
+          </a>
+          <div class="select_sort" id="sorting">
+          </div>
         </div>
-      </div>
+      </section>
       <section class="filter_section">
         <a href="#" class="filter_section" role="button" id="button_filter"
-          title="Haz click aqui para ordenar las peliculas">
+          title="Haz click aqui para filtrar las peliculas">
           <span>Filter</span>
         </a>
         <div class="filter" id="filter">
@@ -121,7 +106,7 @@
     </section>
   </main>
   <footer>By Nizaggie ©Todos los derechos resevados</footer>
-  
+
   <script src="main.js" type="module"></script>
 </body>
 

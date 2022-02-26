@@ -1,14 +1,12 @@
 import Films from './data.js'
 import People from './people.js'
 export {
-  showMorePopular,
-  showYearN,
-  showSortAZ,
   searchWord,
   loopShowFilms,
   filterlist,
   filterByProductor,
   quizMood,
+  sorting,
   director_list,
   producer_list
 }
@@ -48,44 +46,57 @@ function searchWord(word, anObject) {
     }
   })
   searchW = loopShowFilms(foundword, anObject)
-  
+
   return searchW
 }
 // función que rrecorre un array con las peliculas ordenadas del más popular al menos. 
-function showMorePopular(anObject) {
-  let showMp = ""
-  const sortPopular = anObject.sort(function (f1, f2) {
-    return f1.rt_score - f2.rt_score
-  })
-  showMp = sortPopular
-  return showMp
+function sorting(orderType, anObject) {
+   if (orderType === "more_popular") {
+    let showMp = ""
+    const sortPopular = anObject.sort(function (f1, f2) {
+      return f1.rt_score - f2.rt_score
+    })
+    showMp = sortPopular
+    return showMp
+  } else if (orderType === "news") {
+    const sortYear = anObject.sort(function (f1, f2) {
+      if (f1.release_date < f2.release_date) {
+        return 1
+      } else {
+        return -1
+      }
+    })
+    return sortYear
+  } else if (orderType === "olds") {
+    const sortYearR = anObject.sort(function (f1, f2) {
+      if (f1.release_date < f2.release_date) {
+        return 1
+      } else {
+        return -1
+      }
+    })
+    return sortYearR.reverse()
+  } else if (orderType === "sortaz") {
+    const sortAZ = anObject.sort(function (f1, f2) {
+      if (f1.title > f2.title) {
+        return 1
+      } else {
+        return -1
+      }
+    })
+    return sortAZ
+  } else if (orderType === "sortza") {
+    const sortZA = anObject.sort(function (f1, f2) {
+      if (f1.title > f2.title) {
+        return 1
+      } else {
+        return -1
+      }
+    })
+    return sortZA.reverse()
+  }
 }
-// función que rrecorre un array con las peliculas ordenadas del la pelicula más reciente o la menos.
-function showYearN(anObject) {
-  const sortYear = anObject.sort(function (f1, f2) {
-    if (f1.release_date < f2.release_date) {
-      return 1
-    } else {
-      return -1
-    }
-  })
-  return sortYear
 
-}
-
-// función que rrecorre un array con las peliculas ordenadas alfabeticamente de la A-Z y la Z-A
-function showSortAZ(anObject) {
-  const sortAZ = anObject.sort(function (f1, f2) {
-    if (f1.title > f2.title) {
-      return 1
-    } else {
-      return -1
-    }
-  })
-
-  return sortAZ
-
-}
 
 let producer_list = ""
 let director_list = ""
