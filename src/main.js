@@ -1,7 +1,6 @@
 // import data from './data/gibli/ghibli.js';
 
 import studio from './data/ghibli/ghibli.js';
-import Films from './data.js';
 import {
   sorting,
   searchWord,
@@ -35,7 +34,29 @@ document.getElementById("ghibli").addEventListener('click', function () {
   document.getElementById("info_film").innerHTML = ""
   document.getElementById("organize").innerHTML = ""
   filmsDom.innerHTML = ""
-  sectionGhibli.style.display = 'flex'
+
+  sectionGhibli.innerHTML="<h1 class="titleGhibli">Ghibli Studio</h1>
+  <img src="/img/sjViJ5v.jpeg" alt="">
+  <p class="pGhibli">Studio Ghibli Inc. is a Japanese animation film studio headquartered in Koganei, Tokyo. It is
+    best known for its animated feature films, <br>
+    and has also produced several short subjects, television commercials, and one television film. Its mascot and
+    most recognizable symbol is a character named Totoro, <br>
+    a giant catlike spirit from the 1988 anime film My Neighbor Totoro. Among the studio's highest-grossing films
+    are Spirited Away (2001), <br>
+    Howl's Moving Castle (2004) and Ponyo (2008).[2] The studio was founded on June 15, 1985 by directors Hayao
+    Miyazaki and Isao Takahata and producer Toshio Suzuki, <br>
+    after the successful performance of Topcraft's Nausicaä of the Valley of the Wind (1984). It has also
+    collaborated with video game studios <br>
+    on the visual development of several games.
+    Five of the studio's films are among the ten highest-grossing anime feature films made in Japan. Spirited Away
+    is second, <br>
+    grossing 31.68 billion yen in Japan and over US$380 million worldwide; and Princess Mononoke is fourth, grossing
+    20.18 billion yen. <br>
+    Many of their works have won the Animage Grand Prix award. Four have won the Japan Academy Prize for Animation
+    of the Year. <br>
+    Five of their films have received Academy Award nominations. Spirited Away won the 2002 Golden Bear and the 2003
+    Academy Award for Best Animated Feature.</p>"
+    
   sectionSlide.style.display = 'none'
   sectionQuiz.style.display = 'none'
 })
@@ -72,27 +93,7 @@ loopShowFilms(filmsObj).map(showFilms)
 
 
 
-//Renderiza las películas de Ghibli según la función que la llame
-function showFilms(film) {
-  let id = film.id
-  const hijo = document.createElement("div")
-  hijo.classList.add("card")
-  hijo.id = film.getId()
-  hijo.innerHTML = `
-    <div class="card_img" id="${film.id}">
-        <img src="${film.poster}" alt="${film.title}"/>
-    </div>
-    <div class="card__data">
-        <h3 class = "card_title">${film.title}</h3>
-    </div>
-    `
-  filmsDom.appendChild(hijo)
-  document.getElementById(id).addEventListener('click', function () {
-    const titlesInfoFilm = document.querySelector(".titles_info_film")
-    titlesInfoFilm.style.display = 'flex'
-    selectFilm(id)
-  })
-}
+
 
 //Renderiza de las películas para:
 function showFilmsArray(film) {
@@ -117,40 +118,63 @@ function showFilmsArray(film) {
 
 
 
-function selectFilm(id, locationsFilm) {
-  let filmselected = {}
-  let peopleFilm = {}
-  
-  for (let film of filmsObj) {
-    if (film.id === id) {
-      filmselected = film
-      peopleFilm = film.people
-      locationsFilm = film.locations
+  function selectFilm(id, locationsFilm) {
+    let filmselected = {}
+    let peopleFilm = {}
+
+    for (let film of filmsObj) {
+      if (film.id === id) {
+        filmselected = film
+        peopleFilm = film.people
+        locationsFilm = film.locations
+      }
     }
+
+    infoPeople(peopleFilm)
+    showInfoFilm(filmselected)
+    showLocations(locationsFilm)
+
   }
-  
-  infoPeople(peopleFilm)
-  showInfoFilm(filmselected)
-  return locationsFilm
-       
-}
 
 }
 
-
-  document.getElementById('title_locations').addEventListener('click', function () {
-    const containerPeople = document.querySelector('.container_people')
-    containerPeople.innerHTML=""
-    showLocations()
-    
+//Renderiza las películas de Ghibli según la función que la llame
+function showFilms(film) {
+  let id = film.id
+  const hijo = document.createElement("div")
+  hijo.classList.add("card")
+  hijo.id = film.getId()
+  hijo.innerHTML = `
+    <div class="card_img" id="${film.id}">
+        <img src="${film.poster}" alt="${film.title}"/>
+    </div>
+    <div class="card__data">
+        <h3 class = "card_title">${film.title}</h3>
+    </div>
+    `
+  filmsDom.appendChild(hijo)
+  document.getElementById(id).addEventListener('click', function () {
+    const titlesInfoFilm = document.querySelector(".titles_info_film")
+    titlesInfoFilm.style.display = 'flex'
+    selectFilm(id)
   })
+}
 
-  document.getElementById("title_people").addEventListener('click', function () {
-    const containerLocations = document.querySelector('.container_locations')
-    containerLocations.innerHTML=""
-    showPeople(filmsObj.people)
-  
-  })
+document.getElementById('title_locations').addEventListener('click', function () {
+  const containerPeople = document.querySelector('.container_people')
+  containerPeople.innerHTML = ""
+  showLocations()
+
+})
+
+document.getElementById("title_people").addEventListener('click', function () {
+  const containerLocations = document.querySelector('.container_locations')
+  containerLocations.innerHTML = ""
+  showPeople(filmsObj.people)
+
+})
+
+
 
 
 
@@ -199,7 +223,7 @@ function showInfoFilm(filmInfo) {
   document.getElementById('back').addEventListener('click', function () {
     location.reload()
   })
-  
+
 }
 
 // Función que recibe una instancia de clase de la información de las personajes y la pinta.
