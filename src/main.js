@@ -4,61 +4,25 @@ import studio from './data/ghibli/ghibli.js';
 import {
   sorting,
   searchWord,
-  loopShowFilms,
   filterlist,
   filterByProductor,
   quizMood,
   producer_list,
   director_list
 } from './order.js';
-import People from './people.js';
-import Location from './locations.js';
-
 
 const filmsDom = document.getElementById("container_cards")
 const infoFilms = document.getElementById("container_info")
 const peopleFilms = document.getElementById("container_people")
 const locationFilms = document.getElementById("container_locations")
-let filmsObj = studio.films;
+let theFilms = studio.films;
 
+//Muestra las películas de Ghibli
+theFilms.map(showFilmsArray)
 
 //Img del logo recarga la página
 document.getElementById('logonav').addEventListener('click', function () {
   location.reload()
-})
-
-// Logica que muestra la info Ghibli
-const sectionGhibli = document.querySelector(".ghibli_section")
-const sectionSlide = document.querySelector(".slide_section")
-document.getElementById("ghibli").addEventListener('click', function () {
-  document.getElementById("info_film").innerHTML = ""
-  document.getElementById("organize").innerHTML = ""
-  filmsDom.innerHTML = ""
-
-  sectionGhibli.innerHTML="<h1 class="titleGhibli">Ghibli Studio</h1>
-  <img src="/img/sjViJ5v.jpeg" alt="">
-  <p class="pGhibli">Studio Ghibli Inc. is a Japanese animation film studio headquartered in Koganei, Tokyo. It is
-    best known for its animated feature films, <br>
-    and has also produced several short subjects, television commercials, and one television film. Its mascot and
-    most recognizable symbol is a character named Totoro, <br>
-    a giant catlike spirit from the 1988 anime film My Neighbor Totoro. Among the studio's highest-grossing films
-    are Spirited Away (2001), <br>
-    Howl's Moving Castle (2004) and Ponyo (2008).[2] The studio was founded on June 15, 1985 by directors Hayao
-    Miyazaki and Isao Takahata and producer Toshio Suzuki, <br>
-    after the successful performance of Topcraft's Nausicaä of the Valley of the Wind (1984). It has also
-    collaborated with video game studios <br>
-    on the visual development of several games.
-    Five of the studio's films are among the ten highest-grossing anime feature films made in Japan. Spirited Away
-    is second, <br>
-    grossing 31.68 billion yen in Japan and over US$380 million worldwide; and Princess Mononoke is fourth, grossing
-    20.18 billion yen. <br>
-    Many of their works have won the Animage Grand Prix award. Four have won the Japan Academy Prize for Animation
-    of the Year. <br>
-    Five of their films have received Academy Award nominations. Spirited Away won the 2002 Golden Bear and the 2003
-    Academy Award for Best Animated Feature.</p>"
-    
-  sectionSlide.style.display = 'none'
-  sectionQuiz.style.display = 'none'
 })
 
 // Logica que muestra el Quiz Ghibli
@@ -69,9 +33,7 @@ document.getElementById("quiz").addEventListener('click', function () {
   document.getElementById("organize").innerHTML = ""
   titleMain.style.display = 'none'
   filmsDom.innerHTML = ""
-  sectionSlide.style.display = 'flex'
   sectionQuiz.style.display = 'flex'
-  sectionGhibli.style.display = 'none'
 })
 
 // logica que busca peliculas relacionadas con una palabra
@@ -82,201 +44,44 @@ document.getElementById("search").addEventListener('keypress', function (e) {
     document.getElementById("organize").innerHTML = ""
     filmsDom.innerHTML = ""
     sectionQuiz.style.display = 'none'
-    sectionGhibli.style.display = 'none'
-    searchWord(word, filmsObj).map(showFilms)
+    searchWord(word, theFilms).map(showFilmsArray)
   }
 })
 
-//Muestra las películas de Ghibli 
-loopShowFilms(filmsObj).map(showFilms)
-
-
-
-
-
-
 //Renderiza de las películas para:
-function showFilmsArray(film) {
-  let id = film.id
-  const hijo = document.createElement("div")
-  hijo.classList.add("card")
-  hijo.id = film.id
-  hijo.innerHTML = `
-    <div class="card_img" id="${film.id}">
-        <img src="${film.poster}" alt="${film.title}"/>
-    </div>
-    <div class="card__data">
-        <h3 class = "card_title">${film.title}</h3>
-    </div>
-    `
-  filmsDom.appendChild(hijo)
-  document.getElementById(id).addEventListener('click', function () {
-    const titlesInfoFilm = document.querySelector(".titles_info_film")
-    titlesInfoFilm.style.display = 'flex'
-    selectFilm(id)
-  })
 
-
-
-  function selectFilm(id, locationsFilm) {
-    let filmselected = {}
-    let peopleFilm = {}
-
-    for (let film of filmsObj) {
-      if (film.id === id) {
-        filmselected = film
-        peopleFilm = film.people
-        locationsFilm = film.locations
-      }
+let filmselected = {}
+let peopleFilm = {}
+let locationFilm = {}
+function selectFilm(id) {
+ 
+  for (let film of theFilms) {
+    if (film.id === id) {
+     filmselected = film
+     peopleFilm = film.people
+     locationFilm = film.locations
     }
-
-    infoPeople(peopleFilm)
-    showInfoFilm(filmselected)
-    showLocations(locationsFilm)
-
   }
-
+  peopleFilm.map(showPeople)
+  showInfoFilm(filmselected)
+  locationFilm.map(showLocations)
 }
 
-//Renderiza las películas de Ghibli según la función que la llame
-function showFilms(film) {
-  let id = film.id
-  const hijo = document.createElement("div")
-  hijo.classList.add("card")
-  hijo.id = film.getId()
-  hijo.innerHTML = `
-    <div class="card_img" id="${film.id}">
-        <img src="${film.poster}" alt="${film.title}"/>
-    </div>
-    <div class="card__data">
-        <h3 class = "card_title">${film.title}</h3>
-    </div>
-    `
-  filmsDom.appendChild(hijo)
-  document.getElementById(id).addEventListener('click', function () {
-    const titlesInfoFilm = document.querySelector(".titles_info_film")
-    titlesInfoFilm.style.display = 'flex'
-    selectFilm(id)
-  })
-}
+
+
 
 document.getElementById('title_locations').addEventListener('click', function () {
   const containerPeople = document.querySelector('.container_people')
   containerPeople.innerHTML = ""
-  showLocations()
-
+  locationFilm.map(showLocations)
 })
 
 document.getElementById("title_people").addEventListener('click', function () {
   const containerLocations = document.querySelector('.container_locations')
   containerLocations.innerHTML = ""
-  showPeople(filmsObj.people)
-
+  peopleFilm.map(showPeople)
 })
-
-
-
-
-
-// Funcion que crea una instancia de la información de cada pelicula
-
-
-// Funcion que crea una instancia de la información de cada personaje
-function infoPeople(peopleFilm) {
-  for (const personFilm of peopleFilm) {
-    const peorsonFilmS = new People({
-      name: personFilm.name,
-      img: personFilm.img,
-      gender: personFilm.gender,
-      age: personFilm.age,
-      specie: personFilm.specie
-    })
-    showPeople(peorsonFilmS)
-  }
-}
-
-
-// Función que recibe una instancia de clase de la información de las peliculas y la pinta.
-function showInfoFilm(filmInfo) {
-  titleMain.style.display = 'none'
-  document.getElementById("container_cards").innerHTML = ""
-  document.getElementById("organize").innerHTML = ""
-  const hijo = document.createElement("div")
-  hijo.classList.add("info-card")
-  hijo.innerHTML = ` 
-    <div class= "info_container_card">
-        <div class="info_card_img"> 
-            <img src="${filmInfo.poster}" alt="${filmInfo.title}" />
-        </div>
-        <div class="info_card__data">
-            <h3 class = "info_card_title">${filmInfo.title}</h3>
-            <p>${filmInfo.description}</p>
-            <h4>${filmInfo.producer}</h4>
-            <h5>${filmInfo.release_date}</h5>
-        </div>
-        <div class = "returnButton">
-            <img class="retbut" id="back" src="/img/54623azul.png" alt="Regresa a Inicio" />
-        </div>
-    </div>
-    `
-  infoFilms.appendChild(hijo)
-  document.getElementById('back').addEventListener('click', function () {
-    location.reload()
-  })
-
-}
-
-// Función que recibe una instancia de clase de la información de las personajes y la pinta.
-function showPeople(people) {
-  const hijo = document.createElement("div")
-  hijo.classList.add("people")
-  hijo.innerHTML = `
-    <div class="people_img">
-        <img src="${people.img}" alt="${people.name}"/>
-    </div>
-    <div class="card__data">
-        <h3 class = "card_title">${people.name}</h3>
-        <h4 class = "card_title">Gender: ${people.gender}</h3>
-        <h4 class = "card_title">Age: ${people.age}</h3>
-        <h4 class = "card_title">${people.specie}</h3>
-    </div>
-    `
-  peopleFilms.appendChild(hijo)
-}
-
-// Función que recibe una instancia de clase de la información de las locaciones
-function showInfoLocations(locationsFilm) {
-  for (const locationFilm of locationsFilm) {
-    const locationValues = new Location({
-      name: locationFilm.name,
-      img: locationFilm.img,
-      climate: locationFilm.climate,
-      terrain: locationFilm.terrain,
-      surface_water: locationFilm.surface_water
-    })
-    showLocations(locationValues)
-  }
-}
-
-// Funcion que pinta las locaciones en el Dom
-function showLocations(locationValues) {
-  const hijo = document.createElement("div")
-  hijo.classList.add("locations")
-  hijo.innerHTML = `
-    <div class="locations_img">
-        <img src="${locationValues.img}" alt="${locationValues.name}"/>
-    </div>
-    <div class="card__data">
-        <h3 class = "card_title">${locationValues.name}</h3>
-        <h3 class = "card_title">Climate: ${locationValues.climate}</h3>
-        <h3 class = "card_title">Terrain: ${locationValues.terrain}</h3>
-        <h3 class = "card_title">Surface Water: ${locationValues.surface_water}</h3>
-    </div>
-    `
-  locationFilms.appendChild(hijo)
-}
-
-
+ 
 document.getElementById("sorting").innerHTML = `
       <form >
       <label for="sort" >Ordena por:
@@ -292,13 +97,13 @@ document.getElementById("sorting").innerHTML = `
 // ordenar por popularidad
 document.getElementById('sort').addEventListener('change', function (event) {
   document.getElementById("container_cards").innerHTML = ""
-  sorting(event.target.value, filmsObj).map(showFilmsArray)
+  sorting(event.target.value, theFilms).map(showFilmsArray)
 })
 
-
-
 // funcion que filtra la data y devuelve la de interes
-filterlist(filmsObj)
+
+filterlist(theFilms)
+
 document.getElementById("filter").innerHTML = `
       <form >
       <label for="director" >Directores:
@@ -329,7 +134,7 @@ document.getElementById("filter").innerHTML = `
   `
 document.getElementById("director").addEventListener("change", function (event) {
   document.getElementById("container_cards").innerHTML = ""
-  filterByProductor(filmsObj, event.target.value).map(showFilms)
+  filterByProductor(theFilms, event.target.value).map(showFilmsArray)
 
 
 
@@ -337,7 +142,7 @@ document.getElementById("director").addEventListener("change", function (event) 
 });
 document.getElementById("producer").addEventListener("change", function (event) {
   document.getElementById("container_cards").innerHTML = ""
-  filterByProductor(filmsObj, event.target.value).map(showFilms)
+  filterByProductor(theFilms, event.target.value).map(showFilmsArray) 
 
 });
 
@@ -357,11 +162,61 @@ document.getElementById("quiz").addEventListener("click", function quiz() {
   </select>
     `
   document.getElementById("quizMood").addEventListener("change", function (event) {
-    showQuiz(quizMood(filmsObj, event.target.value));
+    showQuiz(quizMood(theFilms, event.target.value));
   });
 });
 
-// Pintar el Personaje Random del Quiz
+function showInfoFilm(filmInfo) {
+  titleMain.style.display = 'none'
+  document.getElementById("container_cards").innerHTML = ""
+  document.getElementById("organize").innerHTML = ""
+  const hijo = document.createElement("div")
+  hijo.classList.add("info-card")
+  hijo.innerHTML = ` 
+    <div class= "info_container_card">
+        <div class="info_card_img"> 
+            <img src="${filmInfo.poster}" alt="${filmInfo.title}" />
+        </div>
+        <div class="info_card__data">
+            <h3 class = "info_card_title">${filmInfo.title}</h3>
+            <p>${filmInfo.description}</p>
+            <h4>${filmInfo.producer}</h4>
+            <h5>${filmInfo.release_date}</h5>
+        </div>
+        <div class = "returnButton">
+            <img class="retbut" id="back" src="/img/54623azul.png" alt="Regresa a Inicio" />
+        </div>
+    </div>
+    `
+  infoFilms.appendChild(hijo)
+  document.getElementById('back').addEventListener('click', function () {
+    location.reload()
+  })
+
+}
+
+function showFilmsArray(film) {
+  let id = film.id
+  const hijo = document.createElement("div")
+  hijo.classList.add("card")
+  hijo.id = film.id
+  hijo.innerHTML = `
+    <div class="card_img" id="${film.id}">
+        <img src="${film.poster}" alt="${film.title}"/>
+    </div>
+    <div class="card__data">
+        <h3 class = "card_title">${film.title}</h3>
+    </div>
+    `
+  filmsDom.appendChild(hijo)
+  document.getElementById(id).addEventListener('click', function () {
+    const titlesInfoFilm = document.querySelector(".titles_info_film")
+    titlesInfoFilm.style.display = 'flex'
+    selectFilm(id)
+  })
+
+}
+
 function showQuiz(allAges) {
   document.getElementById("quiz_container").innerHTML =
     `
@@ -369,13 +224,47 @@ function showQuiz(allAges) {
     <h2> El personaje para tu mood de hoy es: </h2>
    </div>
     <div class="people_img">
-    <img src="${(allAges[2][1])}" alt="${(allAges[1][1])}"/>
+    <img src="${(allAges.img)}" alt="${(allAges.name)}"/>
    </div>
    <div class="card__data">
-    <h3 class = "card_title">${allAges[1][1]}</h3>
-    <h3 class = "card_title">Gender: ${allAges[3][1]}</h3>
-    <h3 class = "card_title">Age: ${allAges[4][1]}</h3>
-    <h3 class = "card_title">${allAges[1][1]}</h3>
+    <h3 class = "card_title">${allAges.name}</h3>
+    <h3 class = "card_title">Gender: ${allAges.gender}</h3>
+    <h3 class = "card_title">Age: ${allAges.age}</h3>
+    <h3 class = "card_title">${allAges.specie}</h3>
   </div>
     `
+}
+
+function showPeople(people) {
+  const hijo = document.createElement("div")
+  hijo.classList.add("people")
+  hijo.innerHTML = `
+    <div class="people_img">
+        <img src="${people.img}" alt="${people.name}"/>
+    </div>
+    <div class="card__data">
+        <h3 class = "card_title">${people.name}</h3>
+        <h4 class = "card_title">Gender: ${people.gender}</h3>
+        <h4 class = "card_title">Age: ${people.age}</h3>
+        <h4 class = "card_title">${people.specie}</h3>
+    </div>
+    `
+  peopleFilms.appendChild(hijo)
+}
+
+function showLocations(locationValues) {
+  const hijo = document.createElement("div")
+  hijo.classList.add("locations")
+  hijo.innerHTML = `
+    <div class="locations_img">
+        <img src="${locationValues.img}" alt="${locationValues.name}"/>
+    </div>
+    <div class="card__data">
+        <h3 class = "card_title">${locationValues.name}</h3>
+        <h3 class = "card_title">Climate: ${locationValues.climate}</h3>
+        <h3 class = "card_title">Terrain: ${locationValues.terrain}</h3>
+        <h3 class = "card_title">Surface Water: ${locationValues.surface_water}</h3>
+    </div>
+    `
+  locationFilms.appendChild(hijo)
 }
