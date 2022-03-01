@@ -41,9 +41,9 @@ describe('filterByProductor', () => {
 
   it('should return the matched results of a film ', () => {
     expect(filterByProductor(miniFilms, dir_choice, prod_choice)).toEqual([{
-      title: "Castle in the Sky",
-      director: "Hayao Miyazaki",
-      producer: "Isao Takahata"
+      "title": "Castle in the Sky",
+      "director": "Hayao Miyazaki",
+      "producer": "Isao Takahata"
     }]);
   });
 });

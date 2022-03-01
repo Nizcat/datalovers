@@ -15,11 +15,11 @@
   <header>
     <nav>
       <ul>
-        <li><img id="logonav" src="../src/img/41AX51uL0dL.svg" alt="logo"></li>
+        <li><img id="logonav" src="../src/img/41AX51uL0dL.svg" alt="Inicio"></li>
         <li>Studio Ghibli</li>
         <li><a id="quiz" href="#">Quiz</a></li>
         <li>
-          <form action="">
+          <form for="search">
             <input type="text" id="search" placeholder="search">
           </form>
         </li>
@@ -39,47 +39,35 @@
     </section>
   </header>
   <main>
-    <div class="title_main">
-      <h2>Films</h2>
-    </div>
-    <section class="quiz_section">
-      <h1 class="title_quiz">Quiz</h1>
-      <div class="quiz_container" id="quiz_container">
-
-      </div>
-    </section>
     <section class="organize" id="organize">
-      <section>
-        <div class="sort">
-          <a href="#" role="button" class="sort" id="button_sort" title="Haz click aqui para ordenar las peliculas">
-            <span>Sort</span>
-          </a>
-          <div class="select_sort" id="sorting">
-          </div>
+      <div class="sort">
+        <a href="#" role="button" class="sort" id="button_sort" title="Haz click aqui para ordenar las peliculas">
+          <span>Sort</span>
+        </a>
+        <div class="select_sort" id="sorting">
         </div>
-      </section>
-      <section class="filter_section">
+      </div>
+      <div class="filter_section">
         <a href="#" class="filter_section" role="button" id="button_filter"
           title="Haz click aqui para filtrar las peliculas">
           <span>Filter</span>
         </a>
         <div class="filter" id="filter">
         </div>
-      </section>
+      </div>
     </section>
-    <div class="container">
+    <div class="container" id="container">
       <div class="container_cards" id="container_cards"></div>
     </div>
     <section class="info_film" id="info_film">
       <div class="container_info" id="container_info"></div>
-      <div class="titles_info_film">
-        <h2 class="title_people" id="title_people">People</h2>
-        <h2 class="title_locations" id="title_locations">Locations</h2>
-      </div>
-      <div class="container_people container_cards" id="container_people">
-      </div>
-      <div class="container_locations container_cards" id="container_locations">
-      </div>
+      <div id="infoFilm_section"></div>
+      <section class="peopleLocations">
+        <div class="container_people container_cards" id="container_people">
+        </div>
+        <div class="container_locations container_cards" id="container_locations">
+        </div>
+      </section>
     </section>
   </main>
   <footer>By Nizaggie ©Todos los derechos resevados</footer>

@@ -8,7 +8,6 @@ export {
   producer_list
 }
 
-
 // función que busca en el objeto las peliculas que coincidan con el string dada por el usuario
 function searchWord(word, theFilms) {
   const foundword = theFilms.filter(function (theFilms) {
@@ -26,35 +25,10 @@ function searchWord(word, theFilms) {
       return false
     }
   })
-<<<<<<< HEAD
-  searchW = loopShowFilms(foundword)
-=======
->>>>>>> testing2
   
     return foundword
 }
 // función que rrecorre un array con las peliculas ordenadas del más popular al menos. 
-<<<<<<< HEAD
-function showMorePopular(anObject) {
-  let showMp = ""
-  const sortPopular = anObject.sort(function (film1, film2) {
-    return film1.rt_score - film2.rt_score
-  })
-  showMp = sortPopular
-  return showMp
-}
-// función que rrecorre un array con las peliculas ordenadas del la pelicula más reciente o la menos.
-function showYearN(anObject) {
-  const sortYear = anObject.sort(function (f1, f2) {
-    if (f1.release_date < f2.release_date) {
-      return 1
-    } else {
-      return -1
-    }
-  })
-  return sortYear
-
-=======
 function sorting(orderType, theFilms) {
    if (orderType === "more_popular") {
     let showMp = ""
@@ -100,7 +74,6 @@ function sorting(orderType, theFilms) {
     })
     return sortZA.reverse()
   }
->>>>>>> testing2
 }
 
 
@@ -108,6 +81,7 @@ let producer_list = ""
 let director_list = ""
 
 function filterlist(theFilms) {
+
   let producers = theFilms.map((theFilms) => theFilms.producer);
   producer_list = Object.values(producers).reduce((list, prod) => {
     if (!list.includes(prod)) {
