@@ -155,18 +155,30 @@ document.getElementById("quiz").addEventListener("click", function quiz() {
 
 function showQuiz(allAges) {
   document.getElementById("container").innerHTML =
-    `
-      <div class="quiz_character">
-    <h2> El personaje para tu mood de hoy es: </h2>
+ `<div class="quizContainer">
+    <div class="quiz_character">
+      <h2> The character for your today´s mood is:</h2>
    
+      <div class="people_img">
+       <img src="${(allAges[0].img)}" alt="${(allAges[0].name)}"/>
+      </div>
+      <div class="card__data">
+        <p class = "card_title">${allAges[0].name}</p>
+        <p class = "card_title">Gender: ${allAges[0].gender}</p>
+        <p class = "card_title">Age: ${allAges[0].age}</p>
+        <p class = "card_title">${allAges[0].specie}</p>
+      </div>
+    </div>
+    <div class="quiz_character">
+    <h2> And your vehicle is : </h2>
+ 
     <div class="people_img">
-    <img src="${(allAges.img)}" alt="${(allAges.name)}"/>
-   </div>
-   <div class="card__data">
-    <h3 class = "card_title">${allAges.name}</h3>
-    <h3 class = "card_title">Gender: ${allAges.gender}</h3>
-    <h3 class = "card_title">Age: ${allAges.age}</h3>
-    <h3 class = "card_title">${allAges.specie}</h3>
+     <img src="${(allAges[1].img)}" alt="${(allAges[1].name)}"/>
+    </div>
+    <div class="card__data">
+      <p class = "card_title">${allAges[1].name}</p>
+      <p class = "card_title">Description: ${allAges[1].description}</p>
+    </div>
   </div>
   </div>
   <div class = "returnButton">

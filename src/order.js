@@ -25,12 +25,12 @@ function searchWord(word, theFilms) {
       return false
     }
   })
-  
-    return foundword
+
+  return foundword
 }
 // función que rrecorre un array con las peliculas ordenadas del más popular al menos. 
 function sorting(orderType, theFilms) {
-   if (orderType === "more_popular") {
+  if (orderType === "more_popular") {
     let showMp = ""
     const sortPopular = theFilms.sort(function (f1, f2) {
       return f1.rt_score - f2.rt_score
@@ -87,7 +87,7 @@ function filterlist(theFilms) {
     if (!list.includes(prod)) {
       list.push(prod);
     }
-    return list; 
+    return list;
   }, [])
   let directors = theFilms.map((theFilms) => theFilms.director);
 
@@ -95,7 +95,7 @@ function filterlist(theFilms) {
     if (!list.includes(dir)) {
       list.push(dir);
     }
-    return list; 
+    return list;
   }, [])
 
 }
@@ -117,28 +117,44 @@ function quizMood(theFilms, mood) { //recibe un objeto y separa por edades los p
   let arrayJung = []; // regresar un personaje random dependiendo de la opción que 
   let arrayAdult = []; // escogió, el usuario, en el quiz.
   let arrayElder = [];
+  let vehicles = [];
   for (let keyfilm of theFilms) {
     for (let characters of keyfilm.people) {
       if (characters.age < 29 || characters.age === "Child") {
-         arrayJung.push(characters)
+        arrayJung.push(characters)
       } else if (characters.age > 29 && characters.age < 55 || characters.age === "Adult" || characters.age === "Unspecified/Adult" || characters.age === "NA") {
-         arrayAdult.push(characters);
+        arrayAdult.push(characters);
       } else if (characters.age > 56 || characters.age === "Elder") {
-         arrayElder.push(characters);
+        arrayElder.push(characters);
       }
+    }
+  }
+  for (let keyfilm of theFilms) {
+    for (let vehicle of keyfilm.vehicles) {
+      vehicles.push(vehicle);
     }
   }
   function getRandomInt(min, max) {
     return (Math.floor(Math.random() * (max - min)) + min);
   }
+  let infoQuizContainer = []
   let elderChar = arrayElder[getRandomInt(0, 15)];
   let adultChar = arrayAdult[getRandomInt(0, 30)];
   let jungChar = arrayJung[getRandomInt(0, 30)];
+  let aVehicle = vehicles[getRandomInt(0, 5)]
   if (mood === "jung") {
-    return jungChar
+    infoQuizContainer.push(jungChar)
+    infoQuizContainer.push(aVehicle)
+    return infoQuizContainer
   } else if (mood === "adult") {
-    return adultChar
+    infoQuizContainer.push(adultChar)
+    infoQuizContainer.push(aVehicle)
+    return infoQuizContainer
   } else if (mood === "elder") {
-    return elderChar
+    infoQuizContainer.push(elderChar)
+    infoQuizContainer.push(aVehicle)
+    return infoQuizContainer
   }
+
+
 }
